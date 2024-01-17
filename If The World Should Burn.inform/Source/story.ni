@@ -3,14 +3,14 @@
 Include Quip-Based Conversation by Michael Martin.
 Include Basic Screen Effects by Emily Short.
 
-Section 1 - Testing descriptions - Not for release
+Section 1 - Testing Descriptions - Not for release
 
 When play begins (this is the run property checks at the start of play rule):
 	repeat with item running through things:
 		if description of the item is "":
 			say "WARNING: [item] has no description."
 
-Section 2 - Setup
+Section 2 - Setup and Definitions
 
 A person has a number called max health.
 A person has a number called present health.
@@ -20,6 +20,8 @@ Definition: a person is dead if his present health is less than 1.
 
 The max health of the player is 100.
 The present health of the player is 100.
+
+A mini dog is a kind of value. The mini dogs are diamond shiba inu, orange tabby cat, springer spaniel, golden retriever, corgi, shih tzu, border collie, malamute, husky, Australian shepherd, beagle, Bernese mountain dog, black lab.
 
 When play begins:
 	now the generic ask quip is "They stare at you. Their gaze pierces your soul. A sense of dread begins to take over. What do they see? Can they read your mind? Do they know what you've done?? Have you even done anything wrong???";
@@ -56,11 +58,32 @@ lapis-discuss-lapis	"'Oh, me? I'm here to guide you guys through this place! The
 lapis-discuss-the-cavern	"Lapis looks around the room. 'Yeah, the Cavern is a bit intimidating. I feel like they probably got a little lazy designing this section. Well, not that the rest of it is much better, I suppose. Maybe they wanted to test your social skills through talking to me? Or something? Oh right! You probably want to get out of here. Hmm, I was told there's a structure to your south that you should be able to reach on foot. Can't see it now, but apparently you also can't miss it once you get closer. Not sure what that means.'"
 lapis-discuss-the-dawg	"'[if the dawg is dead]The dawg? What about it? You've killed it, there's not much else to be discussed. For now at least.[otherwise]The dawg? Yeah, sorry for the aggression, but it looks like you handled it well! Gives you good karma, I suppose.[end if]'"
 
+Table of Lapis Conversation
+prompt	response	enabled
+"Who are you?"	lapis-discuss-lapis	1
+"Where are we?"	lapis-discuss-the-cavern	1
+"What was that that????"	lapis-discuss-the-dawg	0
+
 Section 4 - Functions
 
 To pacify the dawg:
 	now the dawg is passive;
-	enable the lapis-discuss-the-dawg quip for Lapis;
+	enable the lapis-discuss-the-dawg quip for Lapis.
+
+To reveal the dawg:
+	now the dawg is described;
+	now the dawg is done.
+
+To do a gacha pull:
+	say "A series of mechanical noises emit from the gacha machine, as your prize makes it down to the output container. Finally, with a loud 'Ding!', everything settles into place. Inside is...[paragraph break]";
+	if a random chance of 1 in 100 succeeds:
+		say "A small model of a shiba inu! Is it made of glass? It looks a little too shiny for that to be true... no, wait, is it made of... diamond???";
+	otherwise if a random chance of 1 in 10 succeeds:
+		say "... a cat? A little model of an orange tabby cat? Huh. I thought this machine was supposed to dispense dogs.";
+	otherwise if a random chance of 1 in 6 succeeds:
+		say "A mini springer spaniel! What a great dog. Probably the best kind. Objectively, and without the bias of the author.";
+	otherwise:
+		say "A mini [a random mini dog between golden retriever and black lab]! How cute!".
 
 Section 5 - Story
 
@@ -79,17 +102,7 @@ Instead of going from the road to the road:
 The gacha machine is scenery in the road. The gacha machine has the description "A nondescript gacha machine sits on the south side of the road, displaying a large image of a shiba inu on the front. A sizeable lever sits on the side and an output container can be easily seen on the front. It looks to be fully functional."
 The gacha lever is scenery on the gacha machine. The description of the lever is "A lever that can be pulled to run the gacha machine. Why don't you try your luck?"
 The gacha output container is scenery on the gacha machine. The description of the output container is "An output container for the gacha machine. Nothing currently sits inside, but the gambler inside you wants to see it filled."
-A mini dog is a kind of value. The mini dogs are diamond shiba inu, orange tabby cat, springer spaniel, golden retriever, corgi, shih tzu, border collie, malamute, husky, Australian shepherd, beagle, Bernese mountain dog, black lab.
-Instead of pulling the lever:
-	say "A series of mechanical noises emit from the gacha machine, as your prize makes it down to the output container. Finally, with a loud 'Ding!', everything settles into place. Inside is...[paragraph break]";
-	if a random chance of 1 in 100 succeeds:
-		say "A small model of a shiba inu! Is it made of glass? It looks a little too shiny for that to be true... no, wait, is it made of... diamond???";
-	otherwise if a random chance of 1 in 10 succeeds:
-		say "... a cat? A little model of an orange tabby cat? Huh. I thought this machine was supposed to dispense dogs.";
-	otherwise if a random chance of 1 in 6 succeeds:
-		say "A mini springer spaniel! What a great dog. Probably the best kind. Objectively, and without the bias of the author.";
-	otherwise:
-		say "A mini [a random mini dog between golden retriever and black lab]! How cute!";
+Instead of pulling the lever, do a gacha pull.
 
 The House is north of the driveway. "[if unvisited]When you first enter the house, you can hear the old floorboards creaking in protest as they struggle to support the weight of a person. [end if]The house seems to be comprised of a single room, save for a staircase pushed up against one wall leading down into the floor. A single iron stove sits against another wall, filled with the remnants of a wood fire long extinguished."
 
@@ -158,12 +171,6 @@ The Cavern is south of the Flipped House. "A large cavern surrounds you. The cei
 Lapis is an undescribed woman in the cavern. Lapis has the description "A woman with a flowing blue dress with golden highlights sprinkled throughout stands in front of you. She wears an excited smile on her face, as if she was waiting for you to make it through the barrier."
 Understand "person" and "woman" as Lapis. The greeting of Lapis is lapis-greeting. The litany of Lapis is the Table of Lapis Conversation.
 
-Table of Lapis Conversation
-prompt	response	enabled
-"Who are you?"	lapis-discuss-lapis	1
-"Where are we?"	lapis-discuss-the-cavern	1
-"What was that that????"	lapis-discuss-the-dawg	0
-
 The dawg is an undescribed neuter animal in the cavern. The dawg can be either passive or aggressive. The dawg is aggressive. The dawg can be alive or dead. The dawg is alive. The dawg can be either ready or done. The dawg is done. The dawg has the description "You think this is a dog, but you're not sure. It looks vaguely dog-like, but more... cool. So you'll just call it a dawg."
 
 [Ways to encounter the dawg]
@@ -173,19 +180,17 @@ Instead of going from the Cavern to the Golden Hall when the dawg is aggressive:
 	otherwise:
 		say "A decision is made to move forward on your journey, continuing southward. But suddenly, a large... dog? It kinda looks like one, at least. Kinda. Let's just call it a dawg for now. Either way, it's attacking now! -20 hp for the claw marks it gave you as you were trying to figure out what it was.";
 		decrease the present health of the player by 20;
-		now the dawg is described;
-		now the dawg is done.
+		reveal the dawg.
 Instead of examining or attacking or feeding or talking to or petting the dawg when the dawg is undescribed:
 	say "Alright, fess up. How did you know the dawg was there? Are you cheating? Is this not your first session? Hmph. I'm watching you now... well, not that I wasn't before, but now I'm WATCHING watching you. Okay?[paragraph break]Oh, also, the dawg is now attacking you. That's what you get.";
-	now the dawg is described;
-	now the dawg is done.
+	reveal the dawg.
 
 [Ways to attack the dawg]
 Instead of attacking the dawg when the dawg is described:
 	if the player has the pot:
 		say "With a solid 'Thwack!', the pot strikes the dawg and immediately sends it unconscious. Congratulations. An atrocity has been committed. A war crime. A violation of the Geneva Convention. And it is on your hands. A single tear falls to the ground, an unstoppable expression of human emotion from he who has slain the beast. Why must it end like this? But hey, at least it's not attacking anyone anymore. Was it worth it? There must have been another way, right?";
-		now the dawg is dead;
 		pacify the dawg;
+		now the present health of the dawg is 0;
 	otherwise:
 		say "An attempt to punch the dawg ends in complete and utter failure as it simply chomps down on the fist that just tried to attack it. If you were going to choose violence, maybe you shouldn't have dropped the pot. -30 hp for that blunder.";
 		decrease the present health of the player by 30;
