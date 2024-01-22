@@ -93,11 +93,11 @@ After examining the sky:
 
 The Driveway is a room in the Outdoors Area. "A paved driveway sits between a small house to the north and a road to the south that seems to stretch all the way to the horizons. The driveway is surrounded by tall grass, hiding the other surroundings. You can see that the door to the house in front of you sits ajar, although calling the entrance inviting is a bit of a stretch."
 
-The Road is south of the driveway. The road is in the Outdoors Area. The road has the description "Footfalls meet the asphalt surface of an unremarkable road below you. Well, unremarkable except for the fact that it seems to stretch endlessly in both directions. How strange. And wait, is that a gacha machine to the south? What is that doing here?"
+The Road is south of the driveway. The road is in the Outdoors Area. The road has the description "Footfalls meet the asphalt surface of an unremarkable road below you. Well, unremarkable except for the fact that it seems to stretch endlessly in both directions. How strange. And wait, is that a gacha machine? What is that doing here?"
 The road is east of the road.
 Instead of going from the road to the road:
 	say "With the first step taken in that direction, a large truck comes roaring down the road from behind at alarming speed and the fleshy human it runs into is no match for its sheer inertia.";
-	end the story saying "Where did that come from? You didn't hear anything."
+	end the story saying "Where did that come from? You're sure that nothing was there just a second ago."
 
 The gacha machine is scenery in the road. The gacha machine has the description "A nondescript gacha machine sits on the south side of the road, displaying a large image of a shiba inu on the front. A sizeable lever sits on the side and an output container can be easily seen on the front. It looks to be fully functional."
 The gacha lever is scenery on the gacha machine. The description of the lever is "A lever that can be pulled to run the gacha machine. Why don't you try your luck?"
@@ -111,7 +111,7 @@ The iron stove is scenery in the House. "A cast-iron stove sits pushed up agains
 A pot is on the stove. The pot has the description "A pot holding a single uncooked macaroni noodle, which seems to have been fused to the pan's bottom through the stresses of time. Or something."
 
 The suspicious sandwich is on the stove. The suspicious sandwich is edible. The suspicious sandwich has the description "A suspicious-looking sandwich that looks processed to no end. How long has this been here? You can see the dust collecting on the top but it somehow still looks to be in pristine condition. It would probably kill whoever ate it, but if they were going to die anyways, why not give it a shot?"
-Instead of eating the suspicious sandwich:
+After eating the suspicious sandwich:
 	if the present health of the player is the max health of the player:
 		now the present health of the player is 0;
 		say "Okay, really? At full health??? Why eat random things from the ground if death is nowhere to be seen?????";
@@ -123,7 +123,7 @@ The Basement is below the House. "[if unvisited]The footfalls on the steps cause
 
 The mirror is a door. The mirror is east of the Basement. The mirror is west of the Flipped Basement. The mirror can be broken or unbroken. The mirror is unbroken and open.
 
-The mirror has the description "A large framed mirror leans on one wall, reflecting all of its surroundings.[if unlocked] Well, almost everything; a human figure is distinctly missing from its image.[otherwise] Just looking at it fills you with the desire to see it in shards on the ground.[end if]"
+The mirror has the description "A large framed mirror leans on one wall, reflecting all of its surroundings.[if the mirror is broken] Well, almost everything; a human figure is distinctly missing from its image.[otherwise] Just looking at it fills you with the desire to see it in shards on the ground.[end if]"
 
 Instead of entering the mirror:
 	if the mirror is unbroken:
@@ -153,8 +153,8 @@ Instead of attacking the mirror when the player does not have the pot:
 
 The Flipped Basement is a room. The Flipped Basement has the description "A mirror image of the basement first entered, this room displayes all of the same properties. Except, well, everything is flipped here."
 
-The reflection shards are in the flipped basement. The reflection shards have the description "A bunch of shards that remain from the human reflection that once blocked the path through the mirror. For some reason, they feel like sugar? Maybe they can be eaten. Who knows."
-Instead of eating the reflection shards:
+The reflection shards are in the flipped basement. The reflection shards are edible. The reflection shards have the description "A bunch of shards that remain from the human reflection that once blocked the path through the mirror. For some reason, they feel like sugar? Maybe they can be eaten. Who knows."
+After eating the reflection shards:
 	if the present health of the player is the max health of the player:
 		now the present health of the player is 130;
 		say "The sharp edges of the reflection shards create shallow cuts inside the mouth of the one consuming them. Somehow, they seem to have an invigorating effect, despite an initially perfectly healthy condition. Are you sure that was sugar and not... some other crystalline substance?";
@@ -172,11 +172,12 @@ Lapis is an undescribed woman in the cavern. Lapis has the description "A woman 
 Understand "person" and "woman" as Lapis. The greeting of Lapis is lapis-greeting. The litany of Lapis is the Table of Lapis Conversation.
 
 The dawg is an undescribed neuter animal in the cavern. The dawg can be either passive or aggressive. The dawg is aggressive. The dawg can be alive or dead. The dawg is alive. The dawg can be either ready or done. The dawg is done. The dawg has the description "You think this is a dog, but you're not sure. It looks vaguely dog-like, but more... cool. So you'll just call it a dawg."
+Understand "dog" as the dawg.
 
 [Ways to encounter the dawg]
 Instead of going from the Cavern to the Golden Hall when the dawg is aggressive:
 	if the dawg is described:
-		say "Running past the dog? Sounds like... a plan of sorts. Surely it's not that fast! Right?...";
+		say "Running past the dawg? Sounds like... a plan of sorts. Surely it's not that fast! Right?...";
 	otherwise:
 		say "A decision is made to move forward on your journey, continuing southward. But suddenly, a large... dog? It kinda looks like one, at least. Kinda. Let's just call it a dawg for now. Either way, it's attacking now! -20 hp for the claw marks it inflicted as you were trying to figure out what it was.";
 		decrease the present health of the player by 20;
@@ -187,8 +188,10 @@ Instead of examining or attacking or feeding or talking to or petting the dawg w
 
 [Ways to attack the dawg]
 Instead of attacking the dawg when the dawg is described:
-	if the player has the pot:
-		say "With a solid 'Thwack!', the pot strikes the dawg and immediately sends it unconscious. Congratulations. An atrocity has been committed. A war crime. A violation of the Geneva Convention. And it is on your hands. A single tear falls to the ground, an unstoppable expression of human emotion from he who has slain the beast. Why must it end like this? But hey, at least it's not attacking anyone anymore. Was it worth it? There must have been another way, right?";
+	if the dawg is dead:
+		say "The dawg is already dead. Don't you think it's suffered enough? Why keep attacking it like that?";
+	otherwise if the player has the pot:
+		say "With a solid 'Thwack!', the pot strikes the dawg and immediately sends it to its grave. Congratulations. An atrocity has been committed. A war crime. A violation of the Geneva Convention. And it is on your hands. A single tear falls to the ground, an unstoppable expression of human emotion from he who has slain the beast. Why must it end like this? But hey, at least it's not attacking anyone anymore. Was it worth it? There must have been another way, right?";
 		pacify the dawg;
 		now the present health of the dawg is 0;
 	otherwise:
@@ -198,13 +201,17 @@ Instead of attacking the dawg when the dawg is described:
 
 [Ways to properly subdue the dawg]
 Instead of petting the dawg when the dawg is described:
-	if the dawg is aggressive:
+	if the dawg is dead:
+		say "What is done is done, and the dawg is now beyond the realm of the living. Any pets given will not be received.";
+	otherwise if the dawg is aggressive:
 		say "The dawg perceives the hand reaching out to pet it as a threat and latches its teeth onto it, causing great pain to the human on the other end. But suddenly, another hand comes out of the darkness, stroking the dawg's fur lovingly! What a great ending! The dawg feels relaxed now, and lays down on the floor to fall asleep. It's suddenly cute appearance instantly heals all of the damage it did. Good choice, player.";
 		pacify the dawg;
 	otherwise:
 		say "The dawg purrs in satisfaction as a hand runs over its soft fur. Probably not the sound anyone was expecting, but clearly something is being done right.".
 Instead of feeding the dawg when the dawg is described:
-	if the dawg is passive:
+	if the dawg is dead:
+		say "What is done is done, and the dawg is now beyond the realm of the living. Any food given will not be received.";
+	otherwise if the dawg is passive:
 		if the dog food is carried:
 			say "The dawg is curled up on the ground snoring at this point, so instead of getting fed immediately, it is left with a tasty treat in front of it to wake up to. How cute.";
 		otherwise:
@@ -236,7 +243,7 @@ Before going from the Cavern to the Golden Hall when the dawg is not aggressive:
 Instead of going from the Golden Hall to the Cavern:
 	say "A glance behind reveals that the entranceway has somehow been sealed and is now a solid wall identical to the rest of the room. It appears that you cannot leave this place so easily."
 
-The Fountain of Reality is a thing in the Golden Hall. The fountain can be either observed or unobserved. The fountain is unobserved. The Fountain of Reality has the description "A tall, shimmering fountain at the far end of the hall that features continuously flowing water coming from an outlet sticking out of the surface. The fountain appears to be made out of a quartz-like substance, but features some iridescent properties, giving it a rainbow-like sheen."
+The Fountain of Reality is scenery in the Golden Hall. The fountain can be either observed or unobserved. The fountain is unobserved. The Fountain of Reality has the description "A tall, shimmering fountain at the far end of the hall that features continuously flowing water coming from an outlet sticking out of the surface. The fountain appears to be made out of a quartz-like substance, but features some iridescent properties, giving it a rainbow-like sheen."
 Instead of examining the Fountain of Reality when the fountain is unobserved:
 	say "The fountain is across the hall, and takes several strides to reach, so you start moving. Once you get there, you peer into its shimmering, barely disturbed surface, and in its reflection, instead of a human figure, you can only see the ceiling of the Golden Hall shimmering back at you.[paragraph break]'If the world should burn, would you shoulder its burden?'[paragraph break]You whip your gaze around and see Lapis standing behind you, despite not seeing her for the entire journey here. Her previously excited expression has been replaced with a blank stare that could bore into a soul. But she's not staring at you.[paragraph break]She's staring at the person standing in front of the fountain.";
 	wait for any key;
