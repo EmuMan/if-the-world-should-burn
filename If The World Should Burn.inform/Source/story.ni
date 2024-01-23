@@ -57,12 +57,30 @@ lapis-greeting	"'Hi, my name is Lapis!'"
 lapis-discuss-lapis	"'Oh, me? I'm here to guide you guys through this place! The Cavern can get a little tricky, so they put me here to show you where to go or answer any basic questions you have.'"
 lapis-discuss-the-cavern	"Lapis looks around the room. 'Yeah, the Cavern is a bit intimidating. I feel like they probably got a little lazy designing this section. Well, not that the rest of it is much better, I suppose. Maybe they wanted to test your social skills through talking to me? Or something? Oh right! You probably want to get out of here. Hmm, I was told there's a structure to your south that you should be able to reach on foot. Can't see it now, but apparently you also can't miss it once you get closer. Not sure what that means.'"
 lapis-discuss-the-dawg	"'[if the dawg is dead]The dawg? What about it? You've killed it, there's not much else to be discussed. For now at least.[otherwise]The dawg? Yeah, sorry for the aggression, but it looks like you handled it well! Gives you good karma, I suppose.[end if]'"
+village-greeting	"The woman cries loudly into her hands."
+village-discuss-the-destruction	"The village woman raises her head, and you can now see that her eyes are filled with rage, tears streaming down her face. 'You let this happen. You're our King, you were supposed to protect us.' You don't know how, but she's right."
+village-discuss-the-leadup	"'They said they went out to seek new lands and expand our empire. But they forgot about us. You forgot about us.'"
+village-discuss-her	"'My house is destroyed, my family has been killed, my livelihood is gone. I... I don't know what to do anymore. It's all gone. All of it.'"
+opal-greeting	"'Would you forgive yourself?' Opal directs her eyes towards you and awaits your response as her gaze pierces your soul."
+opal-yes	"'Easy enough to say. Now prove it. Prove that you can grow.'"
+opal-no	"'Very well. You will now be judged.'"
 
 Table of Lapis Conversation
 prompt	response	enabled
 "Who are you?"	lapis-discuss-lapis	1
 "Where are we?"	lapis-discuss-the-cavern	1
 "What was that that????"	lapis-discuss-the-dawg	0
+
+Table of Village Woman Conversation
+prompt	response	enabled
+"Are you okay?"	village-discuss-her	1
+"Who did this?"	village-discuss-the-destruction	1
+"What happened?"	village-discuss-the-leadup	1
+
+Table of Opal Conversation
+prompt	response	enabled
+"Yes."	opal-yes	1
+"No."	opal-no	1
 
 Section 4 - Functions
 
@@ -255,8 +273,8 @@ Before going from the Cavern to the Golden Hall when the dawg is not aggressive:
 Instead of going from the Golden Hall to the Cavern:
 	say "A glance behind reveals that the entranceway has somehow been sealed and is now a solid wall identical to the rest of the room. It appears that you cannot leave this place so easily."
 
-The Fountain of Reality is scenery in the Golden Hall. The fountain can be either observed or unobserved. The fountain is unobserved. The Fountain of Reality has the description "A tall, shimmering fountain at the far end of the hall that features continuously flowing water coming from an outlet sticking out of the surface. The fountain appears to be made out of a quartz-like substance, but features some iridescent properties, giving it a rainbow-like sheen."
-Instead of examining the Fountain of Reality when the fountain is unobserved:
+The Fountain of Reality is scenery in the Golden Hall. The fountain can be either observed or unobserved. The fountain is unobserved. The Fountain of Reality has the description "A tall, shimmering fountain that features continuously flowing water coming from an outlet sticking out of the surface. The fountain appears to be made out of a quartz-like substance, but features some iridescent properties, giving it a rainbow-like sheen."
+Instead of examining the Fountain of Reality when the fountain is unobserved and the fountain is in the Golden Hall:
 	say "The fountain is across the hall, and takes several strides to reach, so you start moving. Once you get there, you peer into its shimmering, barely disturbed surface, and in its reflection, instead of a human figure, you can only see the ceiling of the Golden Hall shimmering back at you.[paragraph break]'If the world should burn, would you shoulder its burden?'[paragraph break]You whip your gaze around and see Lapis standing behind you, despite not seeing her for the entire journey here. Her previously excited expression has been replaced with a blank stare that could bore into a soul. But she's not staring at you.[paragraph break]She's staring at the person standing in front of the fountain.";
 	wait for any key;
 	say "[paragraph break]The world goes dark.";
@@ -311,8 +329,70 @@ Before going from The Depths to The Surface:
 The Surface is above the depths. "You find yourself above the surface of the ocean, watching waves roll around you. The water isn't exactly rough, but it's definitely not perfectly calm either. The horizon is all you can observe on all sides; there seems to be no land in sight."
 
 Instead of talking to Lazuli when Lazuli is in The Surface:
-	say "Lazuli's mouth is open before you can even decide to do the same. 'Well done, player,' he says, bowing his head. 'I urge you to continue to consider the question as you enter the next realm. If the world should burn...'[paragraph break]You don't hear him finish as the world returns to darkness, but you do notice that his gaze, unlike that of Lapis, is directed straight at you.";
+	say "Lazuli's mouth is open before you can even decide to do the same. 'Well done, player,' he says, bowing his head. 'I urge you to continue to consider the question as you enter the next realm. If the world should burn...'[paragraph break]You don't hear him finish as the world returns to darkness, but you do notice that his gaze, unlike that of Lapis, has shifted to point straight at you.";
 	do a realm transition;
 	now the player is in The Hill.
 
 The Hill is a room. "Standing atop this hill gives one a great vantage point over the village below. It is not bustling with activity, as you feel it should have been. Instead, it lays in ruin, ransacked and pillaged, with buildings caving down where fires have overtaken them. The sky almost seems to glow red with destruction, an ominous air over such a tragic sight. Yeah, okay, you got me. This time I can't even think of anything quippy to say. It's just sad, really.[paragraph break]Anyways, a path leads down to the north into a section of the village that seems to still be traversable."
+
+The Village is a region. The pathway is a backdrop in the Village. Understand "path" and "road" as the pathway.
+The pathway has the description "A cobblestone pathway, marked with ash and burn marks. Bodies lie scattered along its length, and in some places, the structures on either side have collapsed to obstruct one side of it. Despite this, it still remains mostly traversable."
+
+The Village Entrance is north of The Hill. The Village Entrance is in the Village. "A modestly sized archway stands in front of the village, forming as the only official entrance along the length of the fence that runs from east to west. Unfortunately, this fence didn't seem to stop whoever attacked the village. Even the archway seems to have been defaced, with the blackened remains of banners flapping in the wind, embers flying from their loose ends. The pathway stretching from north to south continues here, which has by now become cobblestone."
+The banners are scenery in The Village Entrance. The banners have the description "Two banners sit on either side of the archway, their remains flapping in the wind. You can barely make out part of an insignia on them, but both have been otherwise burned beyond recognition."
+Understand "banner" and "flag" and "flags" as the banners.
+
+The Marketplace is north of The Village Entrance. The Marketplace is in The Village. "Just inside the entrance to the village lies what appears to have once been an open market. Stalls lie smashed on either side of the pathway, their produce and trinkets covering the ground in patches. Dead bodies lie among them, painting a grim picture of the slaughter that has occurred. It is here that the stench of blood is the strongest amongst the ashes, and you can hear a faint sobbing to the north. The north to south path underneath continues."
+
+Before going to The Courtyard:
+	now The Fountain of Reality is in The Courtyard.
+The Courtyard is north of The Marketplace. The Courtyard is in The Village. "Here, the pathways open up into a relatively large courtyard. Debris blocks all exits except for the one you just came through, and in the middle is a very familiar fountain. Your suspicions are confirmed when you read its placard: 'The Fountain of Reality'. Its pristine, iridescent sheen blatantly stands out amongst the ruin around you, and leaning up against it is a woman, curled up and crying into her hands."
+
+Opal is a woman. Opal is nowhere. Opal has the description "A striking woman wearing a flowing, opalescent dress that stands out alongside her sharp features and harsh expression."
+The greeting of Opal is opal-greeting. The litany of Opal is the Table of Opal Conversation.
+
+The village woman is a woman in The Courtyard. The village woman has the description "A woman wearing plain clothing sits leaned up against the Fountain of Reality, slowly rocking back in forth as she cries into her hands. She seems to be the only sign of human life in the area, as far as you can tell."
+Understand "person" and "woman" as the village woman. The greeting of the village woman is village-greeting. The litany of the village woman is the Table of Village Woman Conversation.
+The village woman has a number called progress.
+The progress of the village woman is 0.
+Definition: The village woman is exhausted if her progress is 3.
+After quipping when the player is in The Courtyard:
+	if the current quip is village-discuss-the-destruction or the current quip is village-discuss-the-leadup or the current quip is village-discuss-her:
+		increase the progress of the village woman by 1;
+		if the village woman is exhausted:
+			say "Silence permeates the air for several seconds, only to be broken by a voice coming from behind.[paragraph break]'Would you forgive yourself for this?'[paragraph break]You once more whip your gaze around, and this time, it's not Lapis standing there. Instead, a woman wearing a flowing dress stands before you, shimmering with iridescent qualities just like that of the Fountain of Reality. Her skin quite literally glows in a radiant fashion. And you know without even having to think that her name is Opal.[paragraph break]'Quite the tragedy, no? But sometimes such mistakes are unavoidable on the path to becoming a true leader. Some might break down and forfeit their position, but the harder choice is always to stand up and keep moving forward. Accept your losses and learn from them, for they make you who you are. We are not whole without this. So I ask you again, would you forgive yourself?'[paragraph break]";
+			now Opal is in The Courtyard;
+			shift the conversation to the Table of Opal Conversation.
+
+After quipping when the current quip is opal-yes:
+	terminate the conversation;
+	now Opal is nowhere;
+	say "Opal vanishes, revealing a figure dressed in royal clothes that it seems she was obscuring. From the flowing red cape to the golden, jewel-encrusted crown, you can only assume that this man is the King. Or, perhaps, based on what Opal said, a previous version of him. His crazed expression and reckless grin instantly mark him as an enemy, and a sword materializes in your hand. Or, rather, not in your hand, but in the hand of the one you're controlling. The one you've been controlling. The puppet.";
+	now the Old King is in The Courtyard.
+
+After quipping when the current quip is opal-no:
+	terminate the conversation;
+	say "Opal disappears as suddenly as she had arrived, leaving a wisp of white smoke in her wake. As she leaves, the world begins to fade away, dissolving into nothingness.";
+	do a realm transition;
+	now the player is in The Judgement Room.
+
+The Old King is a man. The Old King is nowhere. The present health of the Old King is 3. The Old King has the description "A man wearing a red cape and a golden, jewel-encrusted crown. About as stereotypically king-like as one can get. There's no way that outfit is fit for battle, but it certainly doesn't look like that's going to stop him from trying."
+Instead of going from The Courtyard when the Old King is in the courtyard and the Old King is not dead:
+	say "You cannot run from your past. You must face it head on."
+Instead of talking to the Old King:
+	say "One look into the Old King's eyes tells you that negotiations will not be an option. He takes this moment of hesistation to swing at the puppet, dealing -30hp.";
+	decrease the present health of the player by 30.
+Instead of attacking the Old King:
+	if the present health of the Old King is 3:
+		say "Swords glance off of each other as your puppet strikes the Old King with a good amount of force, sending him staggering backwards. The puppet readies his stance for another strike.";
+	otherwise if the present health of the Old King is 2:
+		say "A second swing catches the Old King off guard, finding purchase on his right arm, which swings helplessly towards the ground.";
+	otherwise if the present health of the Old King is 1:
+		say "Finally, unable to defend himself with only his left hand, the Old King is caught by a sword straight to the neck, severing his head and killing him once and for all. He topples to the ground, and you hear Opal's voice echoing around you. 'Well done. You will now face judgement.' The world around you begins to fade away, dissolving into nothingness.";
+		do a realm transition;
+		now the player is in The Judgement Room;
+	otherwise if the Old King is dead:
+		say "The Old King has already been slain.";
+	decrease the present health of the Old King by 1.
+
+The Judgement Room is a room.
