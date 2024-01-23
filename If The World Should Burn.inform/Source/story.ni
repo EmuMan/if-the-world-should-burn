@@ -21,6 +21,8 @@ Definition: a person is dead if his present health is less than 1.
 The max health of the player is 100.
 The present health of the player is 100.
 
+A person can be either passed or failed. The player is passed.
+
 A mini dog is a kind of value. The mini dogs are diamond shiba inu, orange tabby cat, springer spaniel, golden retriever, corgi, shih tzu, border collie, malamute, husky, Australian shepherd, beagle, Bernese mountain dog, black lab.
 
 When play begins:
@@ -192,7 +194,7 @@ The dog food is in the flipped house. The description of the dog food is "A labe
 
 The Cavern is south of the Flipped House. "A large cavern surrounds you. The ceiling seems impossibly high, but you can still make out stalactites hanging down from above, spears of stone that could kill a person in an instant. A slight fog reaching far into the distance obscures any trace of the cavern walls, if there are any. [if the dawg is undescribed]A person[otherwise]Lapis[end if] stands there with an excited look in her eyes.[if the dawg is undescribed] There are people in this world? Huh.[otherwise] And, of course...[end if]"
 
-Lapis is an undescribed woman in the cavern. Lapis has the description "A woman with a flowing blue dress with golden highlights sprinkled throughout stands in front of the flipped house. She wears an excited smile on her face, as if she was waiting for you to make it through the barrier."
+Lapis is an undescribed woman in the cavern. Lapis has the description "[if Lapis is in The Cavern]A woman with a flowing blue dress with golden highlights sprinkled throughout stands in front of the flipped house. She wears an excited smile on her face, as if she was waiting for you to make it through the barrier.[otherwise]Lapis stands next to Opal, wearing the same flowing blue dress as she had been earlier. She has a softer gaze than her brother, but you can still easily tell that they are siblings.[end if]".
 Understand "person" and "woman" as Lapis. The greeting of Lapis is lapis-greeting. The litany of Lapis is the Table of Lapis Conversation.
 
 The dawg is an undescribed neuter animal in the cavern. The dawg can be either passive or aggressive. The dawg is aggressive. The dawg can be alive or dead. The dawg is alive. The dawg can be either ready or done. The dawg is done. The dawg has the description "You think this is a dog, but you're not sure. It looks vaguely dog-like, but more... cool. So you'll just call it a dawg."
@@ -220,6 +222,7 @@ Instead of attacking the dawg when the dawg is described:
 		now the present health of the dawg is 0;
 		now the dawg is nowhere;
 		now the dawg corpse is in the cavern;
+		now the player is failed;
 	otherwise:
 		say "An attempt to punch the dawg ends in complete and utter failure as it simply chomps down on the fist that just tried to attack it. If you were going to choose violence, maybe you should have remembered the pot. -30 hp for that blunder.";
 		decrease the present health of the player by 30;
@@ -283,9 +286,9 @@ Instead of examining the Fountain of Reality when the fountain is unobserved and
 	say "The world darkens as you are suddenly surrounded by cold water. You are clearly not in the Golden Hall anymore, but you definitely didn't leave of your own accord.";
 	now the player is in The Depths;
 
-The Depths is a room. "The surface of the water shimmers in an entrancing pattern, its beckoning light teasing from far above. Down here though, everything has a deep blue hue, and you can just make out the surface down below. Looking even closer, the shape of a person can be made out, though his blue outfit blends in quite well with the surroundings. You feel as though his name would be Lazuli, but you're not sure how.[if unvisited] Strange place for a person to be, but I must say his drip is immaculate, and... what? Oh, sorry, you're probably right. I'll take it more seriously now.[end if][if Lazuli is dead] Unfortunately, Lazuli is now dead, as he was not removed from the rocks in time and ended up drowning.[end if]"
+The Depths is a room. "The surface of the water shimmers in an entrancing pattern, its beckoning light teasing from far above. Down here though, everything has a deep blue hue, and you can just make out the surface down below. Looking even closer, the shape of a person can be made out, though his blue outfit blends in quite well with the surroundings. You feel as though his name would be Lazuli, but you're not sure how.[if unvisited] Strange place for a person to be, but I must say his drip is immaculate, and... what? Oh, fine. I'll take it more seriously now.[end if][if Lazuli is dead] Unfortunately, Lazuli is now dead, as he was not removed from the rocks in time and ended up drowning.[end if]"
 
-Lazuli is a man in The Depths. Lazuli has the description "[if Lazuli is in The Depths]A man struggles on the ocean floor, seemingly having caught his leg on something. His hand extends out, as if he is asking for someone to help pull him free.[otherwise]A man recently rescued from the depths, bobbing on the surface of the ocean and gasping for breath. How does one end up as he did? Maybe you can ask.[end if]".
+Lazuli is a man in The Depths. Lazuli has the description "[if Lazuli is in The Depths]A man struggles on the ocean floor, seemingly having caught his leg on something. His hand extends out, as if he is asking for someone to help pull him free.[otherwise if Lazuli is in The Surface]A man recently rescued from the depths, bobbing on the surface of the ocean and gasping for breath. How does one end up as he did? Maybe you can ask.[otherwise]Lazuli stands tall, a much more refined version of himself from the one you encountered in the ocean. Looking at him, you have to admit that his drip is indeed immaculate.[end if]".
 Lazuli has a number called stuckness.
 The stuckness of Lazuli is 5.
 Definition: Lazuli is free if his stuckness is less than 1.
@@ -324,7 +327,8 @@ Before going from The Depths to The Surface:
 	otherwise:
 		now Lazuli is nowhere;
 		now Lazuli's corpse is in The Depths;
-		now the present health of Lazuli is 0.
+		now the present health of Lazuli is 0;
+		now the player is failed.
 
 The Surface is above the depths. "You find yourself above the surface of the ocean, watching waves roll around you. The water isn't exactly rough, but it's definitely not perfectly calm either. The horizon is all you can observe on all sides; there seems to be no land in sight."
 
@@ -374,6 +378,7 @@ After quipping when the current quip is opal-no:
 	terminate the conversation;
 	say "Opal disappears as suddenly as she had arrived, leaving a wisp of white smoke in her wake. As she leaves, the world begins to fade away, dissolving into nothingness.";
 	do a realm transition;
+	now the player is failed;
 	now the player is in The Judgement Room.
 
 The Old King is a man. The Old King is nowhere. The present health of the Old King is 3. The Old King has the description "A man wearing a red cape and a golden, jewel-encrusted crown. About as stereotypically king-like as one can get. There's no way that outfit is fit for battle, but it certainly doesn't look like that's going to stop him from trying."
@@ -395,4 +400,34 @@ Instead of attacking the Old King:
 		say "The Old King has already been slain.";
 	decrease the present health of the Old King by 1.
 
-The Judgement Room is a room.
+The Judgement Room is a room. "You find yourself standing in the middle of a circular room made of marble, pillars shooting up to the ceiling all around you.[if unvisited] Ah, how refreshing. These thoughts are your own. You look down and see a body that is your own. Nobody is directing you around anymore, and you suddenly remember your circumstances. The trainings. The application. The test.[end if] Opal stands in front of you, flanked on either side by Lapis and Lazuli. All three sport serious expressions, looking at you expectedly.[if the player is passed] Well, except for Lapis, who is wearing that same excited expression she had when she first met you.[end if]".
+Instead of talking to Lapis when Lapis is in the Judgement Room:
+	say "'Oh, I'm not the one in charge here.' She nods her head in Opal's direction."
+Instead of talking to Lazuli when Lazuli is in the Judgement Room:
+	say "'You will have to talk to her if you wish to proceed.' He nods his head in Opal's direction."
+Instead of talking to Opal when Opal is in the Judgement Room:
+	say "'You have made it through all of the realms. Congratulations on that. However, you should of course know that this is not the only metric we consider. The manner in which you guided your puppet through the situations you encountered were also crucial to our judgement. We apologize for temporarily separating your memories, but completely independent and natural thought is an important part of the integrity of our tests. Your problem-solving, compassion, perseverence, and forgiveness were all tested, and we have concluded the following.'[paragraph break]Opal pulls out a notepad, and begins reading off different sections.[paragraph break]";
+	wait for any key;
+	say "'You clearly made it through the trials of the first room, as well as the rest of the challenges you faced, so I will give you credit for your problem-solving. Well done.' Opal nods in approval as she says this.";
+	wait for any key;
+	if the dawg is dead:
+		say "After reading a little further, Opal continues speaking. 'Unfortunately, you did end up slaying the... 'dawg'.' She glares at Lapis, who shrugs and looks elsewhere, failing miserably to hide the grin on her face. It was a quick interaction though, and her gaze quickly returns to you. 'This automatically fails you for the compassion pillar, which means you cannot proceed to godhood. Still, I will continue to inform you of how you did in the other areas.'";
+	otherwise:
+		say "After reading a little further, Opal continues speaking. 'I see you showed appropriate compassion towards the... 'dawg'.' She glares at Lapis, who shrugs and looks elsewhere, failing miserably to hide the grin on her face. It was a quick interaction though, and her gaze quickly returns to you. 'Despite its initial aggression, you managed to subdue it peacefully. It seems you have passed the compassion pillar, so we can proceed to the next area.'";
+	wait for any key;
+	if Lazuli's corpse is in The Depths:
+		say "Opal pauses for a second to read on, and then opens her mouth to speak again. 'In the ocean scenario, you did not show the perseverance required to save Lazuli from drowning. He is, of course, still with us in the actual world, but that is not the point. I will unfortunately have to fail you for the perseverance pillar.[if the dawg is not dead] This means you will not be proceeding to godhood, but I will continue to inform you of how you did in the other areas.[end if]'";
+	otherwise:
+		say "Opal pauses for a second to read on, and then opens her mouth to speak again. 'You showed the appropriate perseverance to save Lazuli from the depths of the ocean, even though the life of your puppet was on the line as well. Of course, the real Lazuli was never actually in danger, but you had no way of knowing that with your memory being separated and all. Even so, this means you pass the perseverance pillar. Nicely done.'";
+	wait for any key;
+	if the Old King is not dead:
+		say "Opal reaches the bottom of the paper, lifting her head to speak to you one last time. 'The last challenge was a test of forgiveness, but not for others. It was to see if you could forgive yourself and grow as a person. You unfortunately avoided this option for your puppet, which means I will have to fail you for the forgiveness pillar.[if the dawg is not dead and Lazuli's corpse is nowhere] Because of this, despite performing well on the other parts of the test, I cannot promote you to godhood.'";
+	otherwise:
+		say "Opal reaches the bottom of the paper, lifting her head to speak to you one last time. 'The last challenge was a test of forgiveness, but not for others. It was to see if you could forgive yourself and grow as a person. You chose well, and were successfully able to help your puppet overcome their past self.'";
+	wait for any key;
+	if the player is failed:
+		say "With a flick of her wrist, Opal dissolves the notepad into thin air. 'Even if you did not pass this time, you are, of course, invited to try again during the next round of applications. You are dismissed.' The three figures bow their heads as you exit the room, dejected but with your sights set on the next opportunity to arise.";
+		end the story finally saying "The end.";
+	otherwise:
+		say "With a flick of her wrist, Opal dissolves the notepad into thin air, and a rare smile appears on her face. 'Well done,' she says. 'You have proven yourself worthy of running a world. The council has determined that even if the world should burn, you would be fit to shoulder its burden. We will inform the Leaders of your success. For now, you are dismissed.' The three figures bow their heads as you exit the room, beaming and feeling far lighter than ever before.";
+		end the story finally saying "The end."
