@@ -1,0 +1,86 @@
+### The following describes the steps necessary to reach all major endings.
+
+(An actual playthrough is listed below.)
+
+From the driveway, head north into the house.
+
+Take the sandwich and the pot.
+
+Go down into the basement.
+
+Hit the mirror.
+
+Enter the mirror.
+
+Take the shards.
+
+Go up.
+
+Take the dog food.
+
+Go south.
+
+Talk to the woman.
+
+Go south to encounter the dawg.
+
+Here, you can choose between killing the dawg by hitting it repeatedly with the pot, or pacifying it peacefully with either "feed dawg" when the dog food is in your inventory or "pet dawg" unconditionally.
+
+Optionally talk to Lapis again.
+
+Go south into the Golden Hall.
+
+Examine or touch the Fountain of Reality.
+
+Continue the dialogue until the next prompt appears.
+
+Here, you can choose to save Lazuli or leave him to drown. To save him, continue pulling on him until he is free, and then go up to the surface. Talk to him there to continue the story. To leave him, simply go up to the surface and then back down. Pull on his corpse to continue the story.
+
+Continue the dialogue until the next prompt appears.
+
+Continue south, picking up the golden apple along the way.
+
+Once in the courtyard, talk to the village woman.
+
+Exhaust all her dialogue, and Opal will appear.
+
+Here, you can choose whether or not to face your past. Select 1 (Yes.) to face your past, in which you will have to defeat the Old King by attacking it several times. Select 2 (No.) to immediately advance to the final part of the story.
+
+In the final room, talk to Opal, and continue the dialogue from there.
+
+### The following is a minimal playthrough of the good ending.
+
+> n
+> get pot
+> d
+> hit mirror
+> enter mirror
+> u
+> s
+> s
+> pet dawg
+> s
+> x fountain
+(continue dialogue)
+> pull lazuli
+> g
+> g
+> g
+> g
+> u
+> talk to lazuli
+(continue dialogue)
+> n
+> n
+> n
+> talk to woman
+> 1
+> 1
+> 1
+> 1
+> hit king
+> g
+> g
+(continue dialogue)
+> talk to opal
+(continue dialogue)
