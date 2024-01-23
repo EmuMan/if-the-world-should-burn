@@ -85,6 +85,12 @@ To do a gacha pull:
 	otherwise:
 		say "A mini [a random mini dog between golden retriever and black lab]! How cute!".
 
+To do a realm transition:
+	wait for any key;
+	say "[paragraph break]The world goes dark.";
+	wait for any key;
+	clear only the main screen;
+
 Section 5 - Story
 
 The Outdoors Area is a region. The sky is a backdrop in the Outdoors Area. The sky has the description "A brilliant blue sky hangs above you, spotted with a few clouds. The view is nice, but looking at the sun hurts. Maybe don't do that. Actually, you know what? -10 hp. Not because it actually hurt that badly but because that was stupid and this is your punishment."
@@ -166,13 +172,15 @@ The Flipped House is above the flipped basement. The flipped house has the descr
 
 The dog food is in the flipped house. The description of the dog food is "A labeled can of dog food from a brand called 'Dan the Dawg'."
 
-The Cavern is south of the Flipped House. "A large cavern surrounds you. The ceiling seems impossibly high, but you can still make out stalactites hanging down from above, spears of stone that could kill a person in an instant. A slight fog reaching far into the distance obscures any trace of the cavern walls, if there are any. [if the dawg is undescribed]A person[otherwise]Lapis[end if] stands in front of you, with an excited look in her eyes.[if the dawg is undescribed] There are people in this world? Huh.[otherwise] And, of course...[end if]"
+The Cavern is south of the Flipped House. "A large cavern surrounds you. The ceiling seems impossibly high, but you can still make out stalactites hanging down from above, spears of stone that could kill a person in an instant. A slight fog reaching far into the distance obscures any trace of the cavern walls, if there are any. [if the dawg is undescribed]A person[otherwise]Lapis[end if] stands there with an excited look in her eyes.[if the dawg is undescribed] There are people in this world? Huh.[otherwise] And, of course...[end if]"
 
 Lapis is an undescribed woman in the cavern. Lapis has the description "A woman with a flowing blue dress with golden highlights sprinkled throughout stands in front of the flipped house. She wears an excited smile on her face, as if she was waiting for you to make it through the barrier."
 Understand "person" and "woman" as Lapis. The greeting of Lapis is lapis-greeting. The litany of Lapis is the Table of Lapis Conversation.
 
 The dawg is an undescribed neuter animal in the cavern. The dawg can be either passive or aggressive. The dawg is aggressive. The dawg can be alive or dead. The dawg is alive. The dawg can be either ready or done. The dawg is done. The dawg has the description "You think this is a dog, but you're not sure. It looks vaguely dog-like, but more... cool. So you'll just call it a dawg."
 Understand "dog" as the dawg.
+
+The dawg corpse is an animal. The dawg corpse is nowhere. The dawg corpse has the description "The corpse of the dawg that was killed earlier."
 
 [Ways to encounter the dawg]
 Instead of going from the Cavern to the Golden Hall when the dawg is aggressive:
@@ -188,12 +196,12 @@ Instead of examining or attacking or feeding or talking to or petting the dawg w
 
 [Ways to attack the dawg]
 Instead of attacking the dawg when the dawg is described:
-	if the dawg is dead:
-		say "The dawg is already dead. Don't you think it's suffered enough? Why keep attacking it like that?";
-	otherwise if the player has the pot:
+	if the player has the pot:
 		say "With a solid 'Thwack!', the pot strikes the dawg and immediately sends it to its grave. Congratulations. An atrocity has been committed. A war crime. A violation of the Geneva Convention. And it is on your hands. A single tear falls to the ground, an unstoppable expression of human emotion from he who has slain the beast. Why must it end like this? But hey, at least it's not attacking anyone anymore. Was it worth it? There must have been another way, right?";
 		pacify the dawg;
 		now the present health of the dawg is 0;
+		now the dawg is nowhere;
+		now the dawg corpse is in the cavern;
 	otherwise:
 		say "An attempt to punch the dawg ends in complete and utter failure as it simply chomps down on the fist that just tried to attack it. If you were going to choose violence, maybe you should have remembered the pot. -30 hp for that blunder.";
 		decrease the present health of the player by 30;
@@ -201,17 +209,13 @@ Instead of attacking the dawg when the dawg is described:
 
 [Ways to properly subdue the dawg]
 Instead of petting the dawg when the dawg is described:
-	if the dawg is dead:
-		say "What is done is done, and the dawg is now beyond the realm of the living. Any pets given will not be received.";
-	otherwise if the dawg is aggressive:
+	if the dawg is aggressive:
 		say "The dawg perceives the hand reaching out to pet it as a threat and latches its teeth onto it, causing great pain to the human on the other end. But suddenly, another hand comes out of the darkness, stroking the dawg's fur lovingly! What a great ending! The dawg feels relaxed now, and lays down on the floor to fall asleep. It's suddenly cute appearance instantly heals all of the damage it did. Good choice, player.";
 		pacify the dawg;
 	otherwise:
 		say "The dawg purrs in satisfaction as a hand runs over its soft fur. Probably not the sound anyone was expecting, but clearly something is being done right.".
 Instead of feeding the dawg when the dawg is described:
-	if the dawg is dead:
-		say "What is done is done, and the dawg is now beyond the realm of the living. Any food given will not be received.";
-	otherwise if the dawg is passive:
+	if the dawg is passive:
 		if the dog food is carried:
 			say "The dawg is curled up on the ground snoring at this point, so instead of getting fed immediately, it is left with a tasty treat in front of it to wake up to. How cute.";
 		otherwise:
@@ -237,6 +241,14 @@ Every turn when the dawg is aggressive and the dawg is described and the player 
 	otherwise:
 		now the dawg is ready.
 
+[Dawg corpse interactions]
+Instead of attacking the dawg corpse:
+	say "The dawg is already dead. Don't you think it's suffered enough? Why keep attacking it like that?"
+Instead of petting the dawg corpse:
+	say "What is done is done, and the dawg is now beyond the realm of the living. Any pets given will not be received."
+Instead of feeding the dawg corpse:
+	say "What is done is done, and the dawg is now beyond the realm of the living. Any food given will not be received."
+
 The Golden Hall is south of the Cavern. "A hall that seems to be made out of pure gold with its raised roof towering above you, the interior of the Golden Hall is certainly a sight to behold. Pillars stretch up so far you cannot believe they can hold even their own weight, and the light from the torches on the walls create mesmerising reflections that seem to move like they are refracting through water. And, as you get a grip on your surroundings, you realize that there actually is some water in this room, flowing from a fountain on the other end."
 Before going from the Cavern to the Golden Hall when the dawg is not aggressive:
 	say "Lapis waves goodbye as she disappears into the fog. The Cavern seems to go on and on. Several minutes pass before anything of note comes into view, but when the destination finally emerges from the fog, its brilliance is almost overwhelming. An enormous structure that seems to be made out of pure gold stands in stark contrast to the drearyness of the rest of the cave, its entrance an elegant archway that could have been made for giants. A few more minutes of walking and one deep breath later, you cross the threshold."
@@ -247,4 +259,60 @@ The Fountain of Reality is scenery in the Golden Hall. The fountain can be eithe
 Instead of examining the Fountain of Reality when the fountain is unobserved:
 	say "The fountain is across the hall, and takes several strides to reach, so you start moving. Once you get there, you peer into its shimmering, barely disturbed surface, and in its reflection, instead of a human figure, you can only see the ceiling of the Golden Hall shimmering back at you.[paragraph break]'If the world should burn, would you shoulder its burden?'[paragraph break]You whip your gaze around and see Lapis standing behind you, despite not seeing her for the entire journey here. Her previously excited expression has been replaced with a blank stare that could bore into a soul. But she's not staring at you.[paragraph break]She's staring at the person standing in front of the fountain.";
 	wait for any key;
-	end the story finally saying "To be continued..."
+	say "[paragraph break]The world goes dark.";
+	wait for any key;
+	clear only the main screen;
+	say "The world darkens as you are suddenly surrounded by cold water. You are clearly not in the Golden Hall anymore, but you definitely didn't leave of your own accord.";
+	now the player is in The Depths;
+
+The Depths is a room. "The surface of the water shimmers in an entrancing pattern, its beckoning light teasing from far above. Down here though, everything has a deep blue hue, and you can just make out the surface down below. Looking even closer, the shape of a person can be made out, though his blue outfit blends in quite well with the surroundings. You feel as though his name would be Lazuli, but you're not sure how.[if unvisited] Strange place for a person to be, but I must say his drip is immaculate, and... what? Oh, sorry, you're probably right. I'll take it more seriously now.[end if][if Lazuli is dead] Unfortunately, Lazuli is now dead, as he was not removed from the rocks in time and ended up drowning.[end if]"
+
+Lazuli is a man in The Depths. Lazuli has the description "[if Lazuli is in The Depths]A man struggles on the ocean floor, seemingly having caught his leg on something. His hand extends out, as if he is asking for someone to help pull him free.[otherwise]A man recently rescued from the depths, bobbing on the surface of the ocean and gasping for breath. How does one end up as he did? Maybe you can ask.[end if]".
+Lazuli has a number called stuckness.
+The stuckness of Lazuli is 5.
+Definition: Lazuli is free if his stuckness is less than 1.
+Understand "hand" and "man" and "person" as Lazuli.
+
+Lazuli's corpse is a man. Lazuli's corpse is nowhere. Lazuli's corpse has the description "The corpse of a man who recently drowned, his leg still stuck in a crevice in the ground."
+Understand "Lazuli" and "man" and "person" as Lazuli's corpse.
+
+Instead of talking to Lazuli when Lazuli is in The Depths:
+	say "Speaking isn't exactly a trivial task while underwater, so only bubbles come out."
+Instead of pulling or taking Lazuli:
+	if the stuckness of Lazuli is 5:
+		say "Lazuli quickly accepts the hand being extended towards him, and with a solid yank, his leg seems to shift in place. It's good progress, but no person can stay down here forever. They will run out of oxygen eventually.";
+	otherwise if the stuckness of Lazuli is 4:
+		say "With another yank, Lazuli's leg seems to budge a bit more, but it is still wedged pretty badly into the ground. How did he even end up like this? Oxygen is starting to run low for both people involved; you feel as though swimming to the surface now will spell the end for the Lazuli.";
+	otherwise if the stuckness of Lazuli is 3:
+		say "Lazuli's whole body shifts forward, and a few rocks tumble from the place his leg is stuck in. Just a couple more tugs and he should be free, but is there time to do so?";
+	otherwise if the stuckness of Lazuli is 2:
+		say "Both parties pull as hard as they can, giving their all to this final stretch. Lazuli budges forward even more, and it is now clear that the only thing that remains caught is the fabric of his pant leg. The lack of oxygen is becoming more intense than ever, and primal instinct begins to kick in, calling for a breath to be taken.";
+	otherwise if the stuckness of Lazuli is 1:
+		say "With a final tug and a tear of fabric, Lazuli breaks free, rocks cascading in to fill the gap where his leg used to be. Both parties are okay, but a searing pain in the lungs indicates that the only reasonable action is to swim upwards.";
+	otherwise if Lazuli is free:
+		say "Lazuli has already been freed. Staying down here any longer would be a poor decision to make.";
+	decrease the stuckness of Lazuli by 1;
+	if the present health of the player is greater than 20:
+		decrease the present health of the player by 5.
+
+Instead of pulling or taking Lazuli's corpse:
+	say "Lazuli is now no more than a corpse. Freeing him now would not accomplish anything of significance. Even so, an attempt can be made to do so.[paragraph break]'I see you've made your decision.'[paragraph break]You whip around to see, again, Lapis standing behind you. Although this time she seems to be more of a vision than anything else, as it seems as though she is not actually submerged in water. In fact, you can even make out a single tear falling down her cheek.[paragraph break]'Just remember my question. If the world should burn...'[paragraph break]You don't hear her finish as the world returns to darkness, but you do notice that her gaze, unlike last time, has shifted to point directly at you.";
+	do a realm transition;
+	now the player is in The Hill.
+
+Before going from The Depths to The Surface:
+	if Lazuli is free:
+		now Lazuli is in The Surface;
+	otherwise:
+		now Lazuli is nowhere;
+		now Lazuli's corpse is in The Depths;
+		now the present health of Lazuli is 0.
+
+The Surface is above the depths. "You find yourself above the surface of the ocean, watching waves roll around you. The water isn't exactly rough, but it's definitely not perfectly calm either. The horizon is all you can observe on all sides; there seems to be no land in sight."
+
+Instead of talking to Lazuli when Lazuli is in The Surface:
+	say "Lazuli's mouth is open before you can even decide to do the same. 'Well done, player,' he says, bowing his head. 'I urge you to continue to consider the question as you enter the next realm. If the world should burn...'[paragraph break]You don't hear him finish as the world returns to darkness, but you do notice that his gaze, unlike that of Lapis, is directed straight at you.";
+	do a realm transition;
+	now the player is in The Hill.
+
+The Hill is a room. "Standing atop this hill gives one a great vantage point over the village below. It is not bustling with activity, as you feel it should have been. Instead, it lays in ruin, ransacked and pillaged, with buildings caving down where fires have overtaken them. The sky almost seems to glow red with destruction, an ominous air over such a tragic sight. Yeah, okay, you got me. This time I can't even think of anything quippy to say. It's just sad, really.[paragraph break]Anyways, a path leads down to the north into a section of the village that seems to still be traversable."
