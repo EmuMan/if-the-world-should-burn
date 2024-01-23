@@ -88,6 +88,7 @@ Section 4 - Functions
 
 To pacify the dawg:
 	now the dawg is passive;
+	now the present health of the dawg is 1;
 	enable the lapis-discuss-the-dawg quip for Lapis.
 
 To reveal the dawg:
@@ -119,7 +120,7 @@ After examining the sky:
 
 The Driveway is a room in the Outdoors Area. "A paved driveway sits between a small house to the north and a road to the south that seems to stretch all the way to the horizons. The driveway is surrounded by tall grass, hiding the other surroundings. You can see that the door to the house in front of you sits ajar, although calling the entrance inviting is a bit of a stretch."
 
-The Road is south of the driveway. The road is in the Outdoors Area. The road has the description "Footfalls meet the asphalt surface of an unremarkable road below you. Well, unremarkable except for the fact that it seems to stretch endlessly in both directions. How strange. And wait, is that a gacha machine? What is that doing here?"
+The Road is south of the driveway. The road is in the Outdoors Area. The road has the description "Footfalls meet the asphalt surface of an unremarkable road below you. Well, unremarkable except for the fact that it seems to stretch endlessly in both directions. How strange. The driveway is now to the north. And wait, is that a gacha machine? What is that doing here?"
 The road is east of the road.
 Instead of going from the road to the road:
 	say "With the first step taken in that direction, a large truck comes roaring down the road from behind at alarming speed and the fleshy human it runs into is no match for its sheer inertia.";
@@ -130,7 +131,7 @@ The gacha lever is scenery on the gacha machine. The description of the lever is
 The gacha output container is scenery on the gacha machine. The description of the output container is "An output container for the gacha machine. Nothing currently sits inside, but the gambler inside you wants to see it filled."
 Instead of pulling the lever, do a gacha pull.
 
-The House is north of the driveway. "[if unvisited]When you first enter the house, you can hear the old floorboards creaking in protest as they struggle to support the weight of a person. [end if]The house seems to be comprised of a single room, save for a staircase pushed up against one wall leading down into the floor. A single iron stove sits against another wall, filled with the remnants of a wood fire long extinguished."
+The House is north of the driveway. "[if unvisited]When you first enter the house, you can hear the old floorboards creaking in protest as they struggle to support the weight of a person. [end if]The house seems to be comprised of a single room, save for a staircase pushed up against one wall leading down into the floor. The door you came through sits to the south, and a single iron stove sits against another wall, filled with the remnants of a wood fire long extinguished."
 
 The iron stove is scenery in the House. "A cast-iron stove sits pushed up against a wall. Strangely, there seems to be no method of ventilation. Perhaps it's hidden behind the stove?"
 
@@ -145,7 +146,9 @@ After eating the suspicious sandwich:
 		now the present health of the player is the max health of the player;
 		say "The sandwich has been consumed, and... max HP! Guess it wasn't so bad after all."
 
-The Basement is below the House. "[if unvisited]The footfalls on the steps cause dust to fall from cracks you didn't even know existed. Eventually, the stairway opens up into a large chamber. [end if]The walls of this small room appear to have been constructed using stones of varying sizes.[if unvisited] Interestingly, the closer they are examined, the more one can make out smaller stones filling in the cracks, like some sort of neverending fractal.[end if] Their flow is only broken by a large mirror sitting on the wall to the east."
+The Basement is below the House. "[if unvisited]The footfalls on the steps cause dust to fall from cracks you didn't even know existed. Eventually, the stairway opens up into a large chamber. [end if]The walls of this small room appear to have been constructed using stones of varying sizes.[if unvisited] Interestingly, the closer they are examined, the more one can make out smaller stones filling in the cracks, like some sort of neverending fractal.[end if] Their flow is only broken by a large mirror sitting on the wall to the east and a staircase leading upwards."
+The wall is scenery in the basement. The wall has the description "A wall surrounds the basement, comprised of round stones of varying sizes. The closer these stones are examined, the clearer it becomes that there is no lower bound to their size. They just keep getting smaller and smaller to fill in the gaps formed."
+Understand "walls" as the wall.
 
 The mirror is a door. The mirror is east of the Basement. The mirror is west of the Flipped Basement. The mirror can be broken or unbroken. The mirror is unbroken and open.
 
@@ -172,12 +175,12 @@ Instead of attacking the mirror when the player has the pot:
 
 Instead of attacking the mirror when the player does not have the pot:
 	if the mirror is unbroken:
-		say "The sound of flesh on flesh reaches your ears as two fists collide on the surface of the mirror. An interesting result. That probably hurt as well. Perhaps a more hefty implement is needed.";
+		say "The sound of flesh on flesh reaches your ears as two fists collide on the surface of the mirror. An interesting result. That probably hurt as well, so -20hp. Perhaps a more hefty implement is needed.";
 		decrease the present health of the player by 20;
 	otherwise:
 		say "As there is no human reflection to resist, the punch travels straight through the mirror."
 
-The Flipped Basement is a room. The Flipped Basement has the description "A mirror image of the basement first entered, this room displayes all of the same properties. Except, well, everything is flipped here."
+The Flipped Basement is a room. The Flipped Basement has the description "A mirror image of the basement first entered, this room displayes all of the same properties. Except, well, everything is flipped here. A staircase leads upwards."
 
 The reflection shards are in the flipped basement. The reflection shards are edible. The reflection shards have the description "A bunch of shards that remain from the human reflection that once blocked the path through the mirror. For some reason, they feel like sugar? Maybe they can be eaten. Who knows."
 After eating the reflection shards:
@@ -192,12 +195,12 @@ The Flipped House is above the flipped basement. The flipped house has the descr
 
 The dog food is in the flipped house. The description of the dog food is "A labeled can of dog food from a brand called 'Dan the Dawg'."
 
-The Cavern is south of the Flipped House. "A large cavern surrounds you. The ceiling seems impossibly high, but you can still make out stalactites hanging down from above, spears of stone that could kill a person in an instant. A slight fog reaching far into the distance obscures any trace of the cavern walls, if there are any. [if the dawg is undescribed]A person[otherwise]Lapis[end if] stands there with an excited look in her eyes.[if the dawg is undescribed] There are people in this world? Huh.[otherwise] And, of course...[end if]"
+The Cavern is south of the Flipped House. "A large cavern surrounds you. The ceiling seems impossibly high, but you can still make out stalactites hanging down from above, spears of stone that could kill a person in an instant. A slight fog reaching far into the distance obscures any trace of the cavern walls, if there are any. [if the dawg is undescribed]A person[otherwise]Lapis[end if] stands there with an excited look in her eyes.[if the dawg is undescribed] There are people in this world? Huh.[otherwise] And, of course...[end if]".
 
 Lapis is an undescribed woman in the cavern. Lapis has the description "[if Lapis is in The Cavern]A woman with a flowing blue dress with golden highlights sprinkled throughout stands in front of the flipped house. She wears an excited smile on her face, as if she was waiting for you to make it through the barrier.[otherwise]Lapis stands next to Opal, wearing the same flowing blue dress as she had been earlier. She has a softer gaze than her brother, but you can still easily tell that they are siblings.[end if]".
 Understand "person" and "woman" as Lapis. The greeting of Lapis is lapis-greeting. The litany of Lapis is the Table of Lapis Conversation.
 
-The dawg is an undescribed neuter animal in the cavern. The dawg can be either passive or aggressive. The dawg is aggressive. The dawg can be alive or dead. The dawg is alive. The dawg can be either ready or done. The dawg is done. The dawg has the description "You think this is a dog, but you're not sure. It looks vaguely dog-like, but more... cool. So you'll just call it a dawg."
+The dawg is an undescribed neuter animal in the cavern. The dawg can be either passive or aggressive. The dawg is aggressive. The dawg can be either ready or done. The dawg is done. The present health of the dawg is 2. The dawg has the description "You think this is a dog, but you're not sure. It looks vaguely dog-like, but more... cool. So you'll just call it a dawg."
 Understand "dog" as the dawg.
 
 The dawg corpse is an animal. The dawg corpse is nowhere. The dawg corpse has the description "The corpse of the dawg that was killed earlier."
@@ -217,16 +220,24 @@ Instead of examining or attacking or feeding or talking to or petting the dawg w
 [Ways to attack the dawg]
 Instead of attacking the dawg when the dawg is described:
 	if the player has the pot:
-		say "With a solid 'Thwack!', the pot strikes the dawg and immediately sends it to its grave. Congratulations. An atrocity has been committed. A war crime. A violation of the Geneva Convention. And it is on your hands. A single tear falls to the ground, an unstoppable expression of human emotion from he who has slain the beast. Why must it end like this? But hey, at least it's not attacking anyone anymore. Was it worth it? There must have been another way, right?";
-		pacify the dawg;
-		now the present health of the dawg is 0;
-		now the dawg is nowhere;
-		now the dawg corpse is in the cavern;
-		now the player is failed;
+		if the present health of the dawg is 2:
+			say "The pot swings towards the dawg, striking it on the side and sending it stumbling backwards. It looks injured from the attack, but not quite incapacitated. And that definitely did not calm it down.";
+			now the dawg is done;
+			decrease the present health of the dawg by 1;
+		otherwise if the present health of the dawg is 1:
+			say "With a solid 'Thwack!', the pot strikes the dawg and immediately sends it to its grave. Congratulations. An atrocity has been committed. A war crime. A violation of the Geneva Convention. And it is on your hands. A single tear falls to the ground, an unstoppable expression of human emotion from he who has slain the beast. Why must it end like this? But hey, at least it's not attacking anyone anymore. Was it worth it? There must have been another way, right?";
+			pacify the dawg;
+			now the present health of the dawg is 0;
+			now the dawg is nowhere;
+			now the dawg corpse is in the cavern;
+			now the player is failed;
 	otherwise:
-		say "An attempt to punch the dawg ends in complete and utter failure as it simply chomps down on the fist that just tried to attack it. If you were going to choose violence, maybe you should have remembered the pot. -30 hp for that blunder.";
-		decrease the present health of the player by 30;
-		now the dawg is done.
+		if the dawg is aggressive:
+			say "An attempt to punch the dawg ends in complete and utter failure as it simply chomps down on the fist that just tried to attack it. If you were going to choose violence, maybe you should have remembered the pot. -30 hp for that blunder.";
+			decrease the present health of the player by 30;
+			now the dawg is done;
+		otherwise:
+			say "Thankfully, the dawg is so strong that it perceived the punch as a surprise massage, and it wags its tail in response."
 
 [Ways to properly subdue the dawg]
 Instead of petting the dawg when the dawg is described:
@@ -257,8 +268,8 @@ Before going from the Cavern to the Flipped House when the dawg is aggressive an
 	now the dawg is done.
 Every turn when the dawg is aggressive and the dawg is described and the player is in the cavern:
 	if the dawg is ready:
-		say "... also, you unfortunately can't just ignore the dawg. It is still very much attacking. -50 hp.";
-		decrease the present health of the player by 50;
+		say "... also, you unfortunately can't just ignore the dawg. It is still very much attacking. -30 hp.";
+		decrease the present health of the player by 30;
 	otherwise:
 		now the dawg is ready.
 
@@ -277,7 +288,7 @@ Instead of going from the Golden Hall to the Cavern:
 	say "A glance behind reveals that the entranceway has somehow been sealed and is now a solid wall identical to the rest of the room. It appears that you cannot leave this place so easily."
 
 The Fountain of Reality is scenery in the Golden Hall. The fountain can be either observed or unobserved. The fountain is unobserved. The Fountain of Reality has the description "A tall, shimmering fountain that features continuously flowing water coming from an outlet sticking out of the surface. The fountain appears to be made out of a quartz-like substance, but features some iridescent properties, giving it a rainbow-like sheen."
-Instead of examining the Fountain of Reality when the fountain is unobserved and the fountain is in the Golden Hall:
+Instead of examining or touching the Fountain of Reality when the fountain is unobserved and the fountain is in the Golden Hall:
 	say "The fountain is across the hall, and takes several strides to reach, so you start moving. Once you get there, you peer into its shimmering, barely disturbed surface, and in its reflection, instead of a human figure, you can only see the ceiling of the Golden Hall shimmering back at you.[paragraph break]'If the world should burn, would you shoulder its burden?'[paragraph break]You whip your gaze around and see Lapis standing behind you, despite not seeing her for the entire journey here. Her previously excited expression has been replaced with a blank stare that could bore into a soul. But she's not staring at you.[paragraph break]She's staring at the person standing in front of the fountain.";
 	wait for any key;
 	say "[paragraph break]The world goes dark.";
@@ -286,7 +297,7 @@ Instead of examining the Fountain of Reality when the fountain is unobserved and
 	say "The world darkens as you are suddenly surrounded by cold water. You are clearly not in the Golden Hall anymore, but you definitely didn't leave of your own accord.";
 	now the player is in The Depths;
 
-The Depths is a room. "The surface of the water shimmers in an entrancing pattern, its beckoning light teasing from far above. Down here though, everything has a deep blue hue, and you can just make out the surface down below. Looking even closer, the shape of a person can be made out, though his blue outfit blends in quite well with the surroundings. You feel as though his name would be Lazuli, but you're not sure how.[if unvisited] Strange place for a person to be, but I must say his drip is immaculate, and... what? Oh, fine. I'll take it more seriously now.[end if][if Lazuli is dead] Unfortunately, Lazuli is now dead, as he was not removed from the rocks in time and ended up drowning.[end if]"
+The Depths is a room. "The surface of the water shimmers in an entrancing pattern, its beckoning light teasing from far above. Down here though, everything has a deep blue hue, and you can just make out the surface down below.[if Lazuli is in The Depths or Lazuli's corpse is in The Depths] Looking even closer, the shape of a person can be made out, though his blue outfit blends in quite well with the surroundings. You feel as though his name should be Lazuli, but you're not sure how.[end if][if unvisited] Strange place for a person to be, but I must say his drip is immaculate, and... what? Oh, fine. I'll take it more seriously now.[end if][if Lazuli is dead] Unfortunately, Lazuli is now dead, as he was not removed from the rocks in time and ended up drowning.[end if]".
 
 Lazuli is a man in The Depths. Lazuli has the description "[if Lazuli is in The Depths]A man struggles on the ocean floor, seemingly having caught his leg on something. His hand extends out, as if he is asking for someone to help pull him free.[otherwise if Lazuli is in The Surface]A man recently rescued from the depths, bobbing on the surface of the ocean and gasping for breath. How does one end up as he did? Maybe you can ask.[otherwise]Lazuli stands tall, a much more refined version of himself from the one you encountered in the ocean. Looking at him, you have to admit that his drip is indeed immaculate.[end if]".
 Lazuli has a number called stuckness.
@@ -337,16 +348,20 @@ Instead of talking to Lazuli when Lazuli is in The Surface:
 	do a realm transition;
 	now the player is in The Hill.
 
-The Hill is a room. "Standing atop this hill gives one a great vantage point over the village below. It is not bustling with activity, as you feel it should have been. Instead, it lays in ruin, ransacked and pillaged, with buildings caving down where fires have overtaken them. The sky almost seems to glow red with destruction, an ominous air over such a tragic sight. Yeah, okay, you got me. This time I can't even think of anything quippy to say. It's just sad, really.[paragraph break]Anyways, a path leads down to the north into a section of the village that seems to still be traversable."
+The Hill is a room. "Standing atop this hill gives one a great vantage point over the village below. It is not bustling with activity, as you feel it should have been. Instead, it lays in ruin, ransacked and pillaged, with buildings caving in where fires have overtaken them. The sky almost seems to glow red with destruction, an ominous air over such a tragic sight.[if unvisited] Okay, you got me. This time I can't even think of anything to say. It's just depressing, really.[end if][paragraph break][if unvisited]Anyways, a[otherwise]A[end if] path leads down to the north into a section of the village that seems to still be traversable."
 
 The Village is a region. The pathway is a backdrop in the Village. Understand "path" and "road" as the pathway.
 The pathway has the description "A cobblestone pathway, marked with ash and burn marks. Bodies lie scattered along its length, and in some places, the structures on either side have collapsed to obstruct one side of it. Despite this, it still remains mostly traversable."
 
-The Village Entrance is north of The Hill. The Village Entrance is in the Village. "A modestly sized archway stands in front of the village, forming as the only official entrance along the length of the fence that runs from east to west. Unfortunately, this fence didn't seem to stop whoever attacked the village. Even the archway seems to have been defaced, with the blackened remains of banners flapping in the wind, embers flying from their loose ends. The pathway stretching from north to south continues here, which has by now become cobblestone."
+The Village Entrance is north of The Hill. The Village Entrance is in the Village. "A modestly sized archway stands in front of the village, forming the only official entrance along the length of the fence that runs from east to west. Unfortunately, this fence doesn't seem to have stopped whoever attacked the village. Even the archway seems to have been defaced, with the blackened remains of banners flapping in the wind, embers flying from their loose ends. The pathway stretching from north to south continues here, which has by now become cobblestone."
 The banners are scenery in The Village Entrance. The banners have the description "Two banners sit on either side of the archway, their remains flapping in the wind. You can barely make out part of an insignia on them, but both have been otherwise burned beyond recognition."
-Understand "banner" and "flag" and "flags" as the banners.
+Understand "banner" and "flag" and "flags" and "arch" and "archway" as the banners.
 
 The Marketplace is north of The Village Entrance. The Marketplace is in The Village. "Just inside the entrance to the village lies what appears to have once been an open market. Stalls lie smashed on either side of the pathway, their produce and trinkets covering the ground in patches. Dead bodies lie among them, painting a grim picture of the slaughter that has occurred. It is here that the stench of blood is the strongest amongst the ashes, and you can hear a faint sobbing to the north. The north to south path underneath continues."
+The golden apple is a thing in The Marketplace. The golden apple is edible. The golden apple has the description "An apple that appears to be made of pure gold. You assume it is still edible, although you cannot be sure."
+After eating the golden apple:
+	say "Despite being made of gold, the apple is extremely invigorating.[if the present health of the player is the max health of the player] Max health... although that didn't really change anything, huh. Well, at least it was tasty.[otherwise] Max health![end if]";
+	now the present health of the player is the max health of the player.
 
 Before going to The Courtyard:
 	now The Fountain of Reality is in The Courtyard.
@@ -372,16 +387,18 @@ After quipping when the current quip is opal-yes:
 	terminate the conversation;
 	now Opal is nowhere;
 	say "Opal vanishes, revealing a figure dressed in royal clothes that it seems she was obscuring. From the flowing red cape to the golden, jewel-encrusted crown, you can only assume that this man is the King. Or, perhaps, based on what Opal said, a previous version of him. His crazed expression and reckless grin instantly mark him as an enemy, and a sword materializes in your hand. Or, rather, not in your hand, but in the hand of the one you're controlling. The one you've been controlling. The puppet.";
+	now the puppet is in The Courtyard;
 	now the Old King is in The Courtyard.
 
 After quipping when the current quip is opal-no:
 	terminate the conversation;
-	say "Opal disappears as suddenly as she had arrived, leaving a wisp of white smoke in her wake. As she leaves, the world begins to fade away, dissolving into nothingness.";
+	say "Opal disappears as suddenly as she had arrived, leaving a wisp of white smoke in her wake. As she leaves, the world begins to fade away one last time, dissolving into nothingness.";
 	do a realm transition;
 	now the player is failed;
 	now the player is in The Judgement Room.
 
 The Old King is a man. The Old King is nowhere. The present health of the Old King is 3. The Old King has the description "A man wearing a red cape and a golden, jewel-encrusted crown. About as stereotypically king-like as one can get. There's no way that outfit is fit for battle, but it certainly doesn't look like that's going to stop him from trying."
+Understand "man" as the Old King.
 Instead of going from The Courtyard when the Old King is in the courtyard and the Old King is not dead:
 	say "You cannot run from your past. You must face it head on."
 Instead of talking to the Old King:
@@ -393,13 +410,21 @@ Instead of attacking the Old King:
 	otherwise if the present health of the Old King is 2:
 		say "A second swing catches the Old King off guard, finding purchase on his right arm, which swings helplessly towards the ground.";
 	otherwise if the present health of the Old King is 1:
-		say "Finally, unable to defend himself with only his left hand, the Old King is caught by a sword straight to the neck, severing his head and killing him once and for all. He topples to the ground, and you hear Opal's voice echoing around you. 'Well done. You will now face judgement.' The world around you begins to fade away, dissolving into nothingness.";
+		say "Finally, unable to defend himself with only his left hand, the Old King is caught by a sword straight to the neck, severing his head and killing him once and for all. He topples to the ground, and you hear Opal's voice echoing around you. 'Well done. You will now face judgement.' The world around you begins to fade away one last time, dissolving into nothingness.";
 		do a realm transition;
 		now the player is in The Judgement Room;
 	otherwise if the Old King is dead:
 		say "The Old King has already been slain.";
 	decrease the present health of the Old King by 1.
 
+The puppet is a man. The puppet is nowhere. The puppet has the description "Your puppet, who you have been controlling all this time, now takes the form of a king. He wears a red cape and a golden, jewel-encrusted crown, much like the old king he is facing, except the look on the puppet's face spells somber determination."
+
+Before looking when the player is in the Judgement Room:
+	now Lapis is in the Judgement Room;
+	now Lazuli is in the Judgement Room;
+	now Opal is in the Judgement Room;
+	now Lazuli is undescribed;
+	now Opal is undescribed.
 The Judgement Room is a room. "You find yourself standing in the middle of a circular room made of marble, pillars shooting up to the ceiling all around you.[if unvisited] Ah, how refreshing. These thoughts are your own. You look down and see a body that is your own. Nobody is directing you around anymore, and you suddenly remember your circumstances. The trainings. The application. The test.[end if] Opal stands in front of you, flanked on either side by Lapis and Lazuli. All three sport serious expressions, looking at you expectedly.[if the player is passed] Well, except for Lapis, who is wearing that same excited expression she had when she first met you.[end if]".
 Instead of talking to Lapis when Lapis is in the Judgement Room:
 	say "'Oh, I'm not the one in charge here.' She nods her head in Opal's direction."
@@ -408,26 +433,28 @@ Instead of talking to Lazuli when Lazuli is in the Judgement Room:
 Instead of talking to Opal when Opal is in the Judgement Room:
 	say "'You have made it through all of the realms. Congratulations on that. However, you should of course know that this is not the only metric we consider. The manner in which you guided your puppet through the situations you encountered were also crucial to our judgement. We apologize for temporarily separating your memories, but completely independent and natural thought is an important part of the integrity of our tests. Your problem-solving, compassion, perseverence, and forgiveness were all tested, and we have concluded the following.'[paragraph break]Opal pulls out a notepad, and begins reading off different sections.[paragraph break]";
 	wait for any key;
-	say "'You clearly made it through the trials of the first room, as well as the rest of the challenges you faced, so I will give you credit for your problem-solving. Well done.' Opal nods in approval as she says this.";
+	say "'You clearly made it through the trials of the first room, as well as the rest of the challenges you faced, so I will give you credit for your problem-solving. Well done.' Opal nods in approval as she says this.[paragraph break]";
 	wait for any key;
 	if the dawg is dead:
-		say "After reading a little further, Opal continues speaking. 'Unfortunately, you did end up slaying the... 'dawg'.' She glares at Lapis, who shrugs and looks elsewhere, failing miserably to hide the grin on her face. It was a quick interaction though, and her gaze quickly returns to you. 'This automatically fails you for the compassion pillar, which means you cannot proceed to godhood. Still, I will continue to inform you of how you did in the other areas.'";
+		say "After reading a little further, Opal continues speaking. 'Unfortunately, you did end up slaying the... 'dawg'.' She glares at Lapis, who shrugs and looks elsewhere, failing miserably to hide the grin on her face. It was a quick interaction though, and her gaze quickly returns to you. 'This automatically fails you for the compassion pillar, which means you cannot proceed to godhood. Still, I will continue to inform you of how you did in the other areas.'[paragraph break]";
 	otherwise:
-		say "After reading a little further, Opal continues speaking. 'I see you showed appropriate compassion towards the... 'dawg'.' She glares at Lapis, who shrugs and looks elsewhere, failing miserably to hide the grin on her face. It was a quick interaction though, and her gaze quickly returns to you. 'Despite its initial aggression, you managed to subdue it peacefully. It seems you have passed the compassion pillar, so we can proceed to the next area.'";
+		say "After reading a little further, Opal continues speaking. 'I see you showed appropriate compassion towards the... 'dawg'.' She glares at Lapis, who shrugs and looks elsewhere, failing miserably to hide the grin on her face. It was a quick interaction though, and her gaze quickly returns to you. 'Despite its initial aggression, you managed to subdue it peacefully. It seems you have passed the compassion pillar, so we can proceed to the next area.'[paragraph break]";
 	wait for any key;
 	if Lazuli's corpse is in The Depths:
-		say "Opal pauses for a second to read on, and then opens her mouth to speak again. 'In the ocean scenario, you did not show the perseverance required to save Lazuli from drowning. He is, of course, still with us in the actual world, but that is not the point. I will unfortunately have to fail you for the perseverance pillar.[if the dawg is not dead] This means you will not be proceeding to godhood, but I will continue to inform you of how you did in the other areas.[end if]'";
+		say "Opal pauses for a second to read on, and then opens her mouth to speak again. 'In the ocean scenario, you did not show the perseverance required to save Lazuli from drowning. He is, of course, still with us in the actual world, but that is not the point. I will unfortunately have to fail you for the perseverance pillar.[if the dawg is not dead] This means you will not be proceeding to godhood, but I will continue to inform you of how you did in the other areas.[end if]'[paragraph break]";
 	otherwise:
-		say "Opal pauses for a second to read on, and then opens her mouth to speak again. 'You showed the appropriate perseverance to save Lazuli from the depths of the ocean, even though the life of your puppet was on the line as well. Of course, the real Lazuli was never actually in danger, but you had no way of knowing that with your memory being separated and all. Even so, this means you pass the perseverance pillar. Nicely done.'";
+		say "Opal pauses for a second to read on, and then opens her mouth to speak again. 'You showed the appropriate perseverance to save Lazuli from the depths of the ocean, even though the life of your puppet was on the line as well. Of course, the real Lazuli was never actually in danger, but you had no way of knowing that with your memory being separated and all. Even so, this means you pass the perseverance pillar. Nicely done.'[paragraph break]";
 	wait for any key;
 	if the Old King is not dead:
-		say "Opal reaches the bottom of the paper, lifting her head to speak to you one last time. 'The last challenge was a test of forgiveness, but not for others. It was to see if you could forgive yourself and grow as a person. You unfortunately avoided this option for your puppet, which means I will have to fail you for the forgiveness pillar.[if the dawg is not dead and Lazuli's corpse is nowhere] Because of this, despite performing well on the other parts of the test, I cannot promote you to godhood.'";
+		say "Opal reaches the bottom of the paper, lifting her head to speak to you one last time. 'The last challenge was a test of forgiveness, but not for others. It was to see if you could forgive yourself and grow as a person. You unfortunately avoided this option for your puppet, which means I will have to fail you for the forgiveness pillar.[if the dawg is not dead and Lazuli's corpse is nowhere] Because of this, despite performing well on the other parts of the test, I cannot promote you to godhood.[end if]'[paragraph break]";
 	otherwise:
-		say "Opal reaches the bottom of the paper, lifting her head to speak to you one last time. 'The last challenge was a test of forgiveness, but not for others. It was to see if you could forgive yourself and grow as a person. You chose well, and were successfully able to help your puppet overcome their past self.'";
+		say "Opal reaches the bottom of the paper, lifting her head to speak to you one last time. 'The last challenge was a test of forgiveness, but not for others. It was to see if you could forgive yourself and grow as a person. You chose well, and were successfully able to help your puppet overcome their past self.'[paragraph break]";
 	wait for any key;
 	if the player is failed:
 		say "With a flick of her wrist, Opal dissolves the notepad into thin air. 'Even if you did not pass this time, you are, of course, invited to try again during the next round of applications. You are dismissed.' The three figures bow their heads as you exit the room, dejected but with your sights set on the next opportunity to arise.";
 		end the story finally saying "The end.";
 	otherwise:
-		say "With a flick of her wrist, Opal dissolves the notepad into thin air, and a rare smile appears on her face. 'Well done,' she says. 'You have proven yourself worthy of running a world. The council has determined that even if the world should burn, you would be fit to shoulder its burden. We will inform the Leaders of your success. For now, you are dismissed.' The three figures bow their heads as you exit the room, beaming and feeling far lighter than ever before.";
+		say "With a flick of her wrist, Opal dissolves the notepad into thin air, and a rare smile appears on her face. 'Well done,' she says. 'You have proven yourself worthy of running a world and should be eligible for godhood. The council has determined that even if the world should burn, you would be fit to shoulder its burden. We will inform the Leaders of your success. For now, you are dismissed.' The three figures bow their heads as you exit the room, beaming and feeling far lighter than ever before.";
 		end the story finally saying "The end."
+
+Release along with a website and an interpreter.
