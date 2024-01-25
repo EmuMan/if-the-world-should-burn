@@ -8,7 +8,7 @@ Section 1 - Testing Descriptions - Not for release
 When play begins (this is the run property checks at the start of play rule):
 	repeat with item running through things:
 		if description of the item is "":
-			say "WARNING: [item] has no description."
+			say "WARNING: [item] has no description.";
 
 Section 2 - Setup and Definitions
 
@@ -22,12 +22,14 @@ The max health of the player is 100.
 The present health of the player is 100.
 
 A person can be either passed or failed. The player is passed.
+A person can be the narrator. A person is usually not the narrator.
 
 A mini dog is a kind of value. The mini dogs are diamond shiba inu, orange tabby cat, springer spaniel, golden retriever, corgi, shih tzu, border collie, malamute, husky, Australian shepherd, beagle, Bernese mountain dog, black lab.
 
 When play begins:
 	now the generic ask quip is "They stare at you. Their gaze pierces your soul. A sense of dread begins to take over. What do they see? Can they read your mind? Do they know what you've done?? Have you even done anything wrong???";
-	now the left hand status line is "[the player's surroundings] / [the present health of the player] hp".
+	now the left hand status line is "[the player's surroundings] / [the present health of the player] hp";
+	change narrators to Lapis.
 
 Every turn when the player is dead:
 	end the story saying "You are now dead. Sucks to suck."
@@ -112,41 +114,62 @@ To do a realm transition:
 	wait for any key;
 	clear only the main screen;
 
+To change narrators to (p - a person):
+	repeat with current-person running through people:
+		now current-person is not the narrator;
+	now p is the narrator.
+
+To prepare the council:
+	now Lapis is in the Judgement Room;
+	now Lazuli is in the Judgement Room;
+	now Opal is in the Judgement Room;
+	now Lapis is undescribed;
+	now Lazuli is undescribed;
+	now Opal is undescribed.
+
+To clear the player's inventory:
+	now the suspicious sandwich is nowhere;
+	now the pot is nowhere;
+	now the dog food is nowhere;
+	now the reflection shards are nowhere;
+	now the golden apple is nowhere;
+	now the Sacrificial Sword is nowhere.
+
 Section 5 - Story
 
 The Outdoors Area is a region. The sky is a backdrop in the Outdoors Area. The sky has the description "A brilliant blue sky hangs above you, spotted with a few clouds. The view is nice, but looking at the sun hurts. Maybe don't do that. Actually, you know what? -10 hp. Not because it actually hurt that badly but because that was stupid and this is your punishment."
 After examining the sky:
 	decrease the present health of the player by 10.
 
-The Driveway is a room in the Outdoors Area. "A paved driveway sits between a small house to the north and a road to the south that seems to stretch all the way to the horizons. The driveway is surrounded by tall grass, hiding the other surroundings. You can see that the door to the house in front of you sits ajar, although calling the entrance inviting is a bit of a stretch."
+The Driveway is a room in the Outdoors Area. "A paved driveway sits between a small house to the north and a road to the south that seems to stretch all the way to the horizons. The driveway is surrounded by really tall grass, hiding the other surroundings. You can see that the door to the house in front of you sits ajar, although calling the entrance inviting is a bit of a stretch."
 
 The Road is south of the driveway. The road is in the Outdoors Area. The road has the description "Footfalls meet the asphalt surface of an unremarkable road below you. Well, unremarkable except for the fact that it seems to stretch endlessly in both directions. How strange. The driveway is now to the north. And wait, is that a gacha machine? What is that doing here?"
 The road is east of the road.
 Instead of going from the road to the road:
 	say "With the first step taken in that direction, a large truck comes roaring down the road from behind at alarming speed and the fleshy human it runs into is no match for its sheer inertia.";
-	end the story saying "Where did that come from? You're sure that nothing was there just a second ago."
+	end the story saying "Where did that come from? You're sure that nothing was there just a second ago. Maybe don't go that way."
 
 The gacha machine is scenery in the road. The gacha machine has the description "A nondescript gacha machine sits on the south side of the road, displaying a large image of a shiba inu on the front. A sizeable lever sits on the side and an output container can be easily seen on the front. It looks to be fully functional."
 The gacha lever is scenery on the gacha machine. The description of the lever is "A lever that can be pulled to run the gacha machine. Why don't you try your luck?"
 The gacha output container is scenery on the gacha machine. The description of the output container is "An output container for the gacha machine. Nothing currently sits inside, but the gambler inside you wants to see it filled."
 Instead of pulling the lever, do a gacha pull.
 
-The House is north of the driveway. "[if unvisited]When you first enter the house, you can hear the old floorboards creaking in protest as they struggle to support the weight of a person. [end if]The house seems to be comprised of a single room, save for a staircase pushed up against one wall leading down into the floor. The door you came through sits to the south, and a single iron stove sits against another wall, filled with the remnants of a wood fire long extinguished."
+The House is north of the driveway. "[if unvisited]When you first enter the house, you can hear the old, floppy floorboards creaking in protest as they struggle to support the weight of a person. [end if]The house seems to be comprised of a single room, save for a staircase pushed up against one wall leading down into the floor. The door you came through sits to the south, and a single iron stove sits against another wall, filled with the remnants of a wood fire long extinguished."
 
 The iron stove is scenery in the House. "A cast-iron stove sits pushed up against a wall. Strangely, there seems to be no method of ventilation. Perhaps it's hidden behind the stove?"
 
-A pot is on the stove. The pot has the description "A pot holding a single uncooked macaroni noodle, which seems to have been fused to the pan's bottom through the stresses of time. Or something."
+A pot is on the stove. The pot has the description "[if Lapis is the narrator]A pot holding a single uncooked macaroni noodle, which seems to have been fused to the pan's bottom through the stresses of time. Or something.[otherwise if Lazuli is the narrator]This is just a normal pot. No, I'm not doing the macaroni noodle thing. Stop that.[otherwise if Opal is the narrator]A quite hefty looking pot that appears to be... used, yet in decent condition.[otherwise]A normal-looking pot that feels surprisingly hefty in your hand.[end if]"
 
-The suspicious sandwich is on the stove. The suspicious sandwich is edible. The suspicious sandwich has the description "A suspicious-looking sandwich that looks processed to no end. How long has this been here? You can see the dust collecting on the top but it somehow still looks to be in pristine condition. It would probably kill whoever ate it, but if they were going to die anyways, why not give it a shot?"
+The suspicious sandwich is on the stove. The suspicious sandwich is edible. The suspicious sandwich has the description "A suspicious-looking sandwich that looks processed to no end. How long has this been here? You can see the dust collecting on the top but it somehow still looks to be in pristine condition. [if Lapis is the narrator]It would probably kill whoever ate it, but if they were going to die anyways, why not give it a shot?[otherwise if Lazuli is the narrator]Such a stupid item to create. Why not just make it a normal sandwich?[otherwise if Opal is the narrator]I would question its... potential impact on one's health. Maybe avoid eating it if possible.[end if]".
 After eating the suspicious sandwich:
 	if the present health of the player is the max health of the player:
 		now the present health of the player is 0;
-		say "Okay, really? At full health??? Why eat random things from the ground if death is nowhere to be seen?????";
+		say "[if Lapis is the narrator]Okay, really? At full health??? That's your fault.[otherwise if Lazuli is the narrator]Yeah, that wasn't the smartest thing to eat at full health. Might want to have your survival instincts checked.[otherwise if Opal is the narrator]Hmm. An amusing decision, consuming the suspicious sandwich at full health.[end if]";
 	otherwise:
 		now the present health of the player is the max health of the player;
-		say "The sandwich has been consumed, and... max HP! Guess it wasn't so bad after all."
+		say "[if Lapis is the narrator]The sandwich has been consumed, and... max HP! Guess it wasn't so bad after all.[otherwise if Lazuli is the narrator]The sandwich has been consumed, and... looks like that's max HP. Ridiculous if you ask me, but whatever.[otherwise if Opal is the narrator]The sandwich has been consumed, and... hm, max HP! Seems like it didn't end up doing irreparable damage, how nice.[end if]".
 
-The Basement is below the House. "[if unvisited]The footfalls on the steps cause dust to fall from cracks you didn't even know existed. Eventually, the stairway opens up into a large chamber. [end if]The walls of this small room appear to have been constructed using stones of varying sizes.[if unvisited] Interestingly, the closer they are examined, the more one can make out smaller stones filling in the cracks, like some sort of neverending fractal.[end if] Their flow is only broken by a large mirror sitting on the wall to the east and a staircase leading upwards."
+The Basement is below the House. "[if unvisited]The footfalls on the steps cause dust to fall from cracks you didn't even know existed. Eventually, the stairway opens up into a large chamber. [end if]The walls of this small room appear to have been constructed using stones of varying sizes.[if unvisited] Interestingly, the closer they are examined, the more one can make out ever smaller stones filling in the cracks, like some sort of neverending fractal. Also kind of like my flawlessly intricate personality.[end if] Their flow is only broken by a large mirror sitting on the wall to the east and a staircase leading upwards."
 The wall is scenery in the basement. The wall has the description "A wall surrounds the basement, comprised of round stones of varying sizes. The closer these stones are examined, the clearer it becomes that there is no lower bound to their size. They just keep getting smaller and smaller to fill in the gaps formed."
 Understand "walls" as the wall.
 
@@ -168,7 +191,7 @@ Instead of closing the mirror:
 
 Instead of attacking the mirror when the player has the pot:
 	if the mirror is unbroken:
-		say "The pot, travelling with a good amount of momentum, hits the mirror. Except, it doesn't actually hit the mirror; it hits the pot on the other side. With a crash, the human reflection shatters as glass would, breaking the inherent connection between the two sides.[paragraph break]THE BARRIER HAS BEEN BROKEN.";
+		say "The pot, travelling with a good amount of momentum, hits the mirror. Except, it doesn't actually hit the mirror; it hits the pot on the other side. With a 'CRASH!', the human reflection shatters as glass would, breaking the inherent connection between the two sides.[paragraph break]THE BARRIER HAS BEEN BROKEN.";
 		now the mirror is broken;
 	otherwise:
 		say "The pot swings straight through the mirror, as there is no longer a matching reflection to resist."
@@ -182,18 +205,20 @@ Instead of attacking the mirror when the player does not have the pot:
 
 The Flipped Basement is a room. The Flipped Basement has the description "A mirror image of the basement first entered, this room displayes all of the same properties. Except, well, everything is flipped here. A staircase leads upwards."
 
-The reflection shards are in the flipped basement. The reflection shards are edible. The reflection shards have the description "A bunch of shards that remain from the human reflection that once blocked the path through the mirror. For some reason, they feel like sugar? Maybe they can be eaten. Who knows."
+The reflection shards are in the flipped basement. The reflection shards are edible. The reflection shards have the description "A [if Lapis is the narrator]bunch of shards that remain[otherwise]collection of shards that remains[end if] from the human reflection that once blocked the path through the mirror.[if Lapis is the narrator] For some reason, they feel like sugar? Maybe they can be eaten. Who knows.[otherwise if Lazuli is the narrator] They feel like sugar, apparently. Doesn't make much sense to me but I guess they can be eaten.[otherwise if Opal is the narrator] They feel like sugar, and it feels as though they can probably be eaten.[end if]".
 After eating the reflection shards:
 	if the present health of the player is the max health of the player:
 		now the present health of the player is 130;
-		say "The sharp edges of the reflection shards create shallow cuts inside the mouth of the one consuming them. Somehow, they seem to have an invigorating effect, despite an initially perfectly healthy condition. Are you sure that was sugar and not... some other crystalline substance?";
+		say "The sharp edges of the reflection shards create shallow cuts inside the mouth of the one consuming them. Somehow, they seem to have an invigorating effect, despite an initially perfectly healthy condition.[if Lapis is the narrator] Are you sure that was sugar and not... some other crystalline substance?[otherwise if Lazuli is the narrator] How? Who knows. Certainly not me.[otherwise if Opal is the narrator] How interesting.[end if]";
 	otherwise:
 		now the present health of the player is the max health of the player;
-		say "The reflection shards have been consumed. A little strange, but they do seem to have had a positive effect. Hmm, you know what? Max HP! You're welcome."
+		say "The reflection shards have been consumed. A little strange, but they do seem to have had a positive effect.[if Lapis is the narrator] Hmm, you know what? Max HP! You're welcome.[otherwise if Lazuli is the narrator] And of course, that gives max HP. Of course. What doesn't? Terrible level design.[otherwise if Opal is the narrator] Oh, look at that! Max HP now, how convenient.[end if]"
 
 The Flipped House is above the flipped basement. The flipped house has the description "A house identical to the one on the other side, except for the stove is now gone, along with everything on top of it. The walls are painted white now as well, and there seemingly aren't any windows or doors in this version, just a hole in the wall to the south... maybe calling it identical wasn't the most accurate description."
 
-The dog food is in the flipped house. The description of the dog food is "A labeled can of dog food from a brand called 'Dan the Dawg'."
+The dog food is in the flipped house. The description of the dog food is "A labeled can of dog food from a brand called 'Dan the Dawg'.[if Lazuli is the narrator] Of course. I'm not even going to ask.[end if]".
+Instead of eating the dog food:
+	say "[if Lapis is the narrator]That can't be eaten! Well, not by a person at least. I mean, technically it could be, but, uhh... let's just say it can't be. Makes things simpler.[otherwise if Lazuli is the narrator]That's dog food. Not people food.[otherwise if Opal is the narrator]Maybe not the smartest thing to eat. Why not try something more... people-oriented.[otherwise]You... don't really feel like eating the dog food.[end if]"
 
 The Cavern is south of the Flipped House. "A large cavern surrounds you. The ceiling seems impossibly high, but you can still make out stalactites hanging down from above, spears of stone that could kill a person in an instant. A slight fog reaching far into the distance obscures any trace of the cavern walls, if there are any. [if the dawg is undescribed]A person[otherwise]Lapis[end if] stands there with an excited look in her eyes.[if the dawg is undescribed] There are people in this world? Huh.[otherwise] And, of course...[end if]".
 
@@ -246,6 +271,9 @@ Instead of petting the dawg when the dawg is described:
 		pacify the dawg;
 	otherwise:
 		say "The dawg purrs in satisfaction as a hand runs over its soft fur. Probably not the sound anyone was expecting, but clearly something is being done right.".
+		
+Instead of giving the dog food to the dawg:
+	silently try feeding the dawg.
 Instead of feeding the dawg when the dawg is described:
 	if the dawg is passive:
 		if the dog food is carried:
@@ -275,7 +303,7 @@ Every turn when the dawg is aggressive and the dawg is described and the player 
 
 [Dawg corpse interactions]
 Instead of attacking the dawg corpse:
-	say "The dawg is already dead. Don't you think it's suffered enough? Why keep attacking it like that?"
+	say "The dawg is already dead. Don't you think it's suffered enough? I can't believe you."
 Instead of petting the dawg corpse:
 	say "What is done is done, and the dawg is now beyond the realm of the living. Any pets given will not be received."
 Instead of feeding the dawg corpse:
@@ -295,11 +323,12 @@ Instead of examining or touching the Fountain of Reality when the fountain is un
 	wait for any key;
 	clear only the main screen;
 	say "The world darkens as you are suddenly surrounded by cold water. You are clearly not in the Golden Hall anymore, but you definitely didn't leave of your own accord.";
+	change narrators to Lazuli;
 	now the player is in The Depths;
 
-The Depths is a room. "The surface of the water shimmers in an entrancing pattern, its beckoning light teasing from far above. Down here though, everything has a deep blue hue, and you can just make out the surface down below.[if Lazuli is in The Depths or Lazuli's corpse is in The Depths] Looking even closer, the shape of a person can be made out, though his blue outfit blends in quite well with the surroundings. You feel as though his name should be Lazuli, but you're not sure how.[end if][if unvisited] Strange place for a person to be, but I must say his drip is immaculate, and... what? Oh, fine. I'll take it more seriously now.[end if][if Lazuli is dead] Unfortunately, Lazuli is now dead, as he was not removed from the rocks in time and ended up drowning.[end if]".
+The Depths is a room. "The surface of the water shimmers in an entrancing pattern, its beckoning light teasing from far above. Down here though, everything has a deep blue hue, and you can just make out the surface down below.[if Lazuli is in The Depths or Lazuli's corpse is in The Depths] Looking even closer, the shape of a person can be made out, though his blue outfit blends in quite well with the surroundings. You feel as though his name should be Lazuli, but you're not sure how.[end if][if unvisited] Strange place for a person to be, but I must say his drip is absolutely atrocious, and... what? Oh, fine. You can take over for this part.[end if][if Lazuli is dead] Unfortunately, Lazuli is now dead, as he was not removed from the rocks in time and ended up drowning.[end if]".
 
-Lazuli is a man in The Depths. Lazuli has the description "[if Lazuli is in The Depths]A man struggles on the ocean floor, seemingly having caught his leg on something. His hand extends out, as if he is asking for someone to help pull him free.[otherwise if Lazuli is in The Surface]A man recently rescued from the depths, bobbing on the surface of the ocean and gasping for breath. How does one end up as he did? Maybe you can ask.[otherwise]Lazuli stands tall, a much more refined version of himself from the one you encountered in the ocean. Looking at him, you have to admit that his drip is indeed immaculate.[end if]".
+Lazuli is a man in The Depths. Lazuli has the description "[if Lazuli is in The Depths]A man struggles on the ocean floor, seemingly having caught his leg on something. His hand extends out, as if he is asking for someone to help pull him free.[otherwise if Lazuli is in The Surface]A man recently rescued from the depths, bobbing on the surface of the ocean and gasping for breath. How does one end up as he did? Maybe you can ask.[otherwise]Lazuli stands tall, a much more refined version of himself from the one you encountered in the ocean. Looking at him, you have to admit that his drip is immaculate.[end if]".
 Lazuli has a number called stuckness.
 The stuckness of Lazuli is 5.
 Definition: Lazuli is free if his stuckness is less than 1.
@@ -330,6 +359,7 @@ Instead of pulling or taking Lazuli:
 Instead of pulling or taking Lazuli's corpse:
 	say "Lazuli is now no more than a corpse. Freeing him now would not accomplish anything of significance. Even so, an attempt can be made to do so.[paragraph break]'I see you've made your decision.'[paragraph break]You whip around to see, again, Lapis standing behind you. Although this time she seems to be more of a vision than anything else, as it seems as though she is not actually submerged in water. In fact, you can even make out a single tear falling down her cheek.[paragraph break]'Just remember my question. If the world should burn...'[paragraph break]You don't hear her finish as the world returns to darkness, but you do notice that her gaze, unlike last time, has shifted to point directly at you.";
 	do a realm transition;
+	change narrators to Opal;
 	now the player is in The Hill.
 
 Before going from The Depths to The Surface:
@@ -341,14 +371,15 @@ Before going from The Depths to The Surface:
 		now the present health of Lazuli is 0;
 		now the player is failed.
 
-The Surface is above the depths. "You find yourself above the surface of the ocean, watching waves roll around you. The water isn't exactly rough, but it's definitely not perfectly calm either. The horizon is all you can observe on all sides; there seems to be no land in sight."
+The Surface is above the depths. "You find yourself above the surface of the ocean, watching waves roll around you. The water isn't exactly rough, but it's definitely not perfectly calm either. The horizon is all you can observe on all sides; there seems to be no land in sight.[if Lazuli is in The Surface] You see two other- I mean, one other, two in total, people, floating on the water with you. Sorry about that.[end if]";
 
 Instead of talking to Lazuli when Lazuli is in The Surface:
 	say "Lazuli's mouth is open before you can even decide to do the same. 'Well done, player,' he says, bowing his head. 'I urge you to continue to consider the question as you enter the next realm. If the world should burn...'[paragraph break]You don't hear him finish as the world returns to darkness, but you do notice that his gaze, unlike that of Lapis, has shifted to point straight at you.";
 	do a realm transition;
+	change narrators to Opal;
 	now the player is in The Hill.
 
-The Hill is a room. "Standing atop this hill gives one a great vantage point over the village below. It is not bustling with activity, as you feel it should have been. Instead, it lays in ruin, ransacked and pillaged, with buildings caving in where fires have overtaken them. The sky almost seems to glow red with destruction, an ominous air over such a tragic sight.[if unvisited] Okay, you got me. This time I can't even think of anything to say. It's just depressing, really.[end if][paragraph break][if unvisited]Anyways, a[otherwise]A[end if] path leads down to the north into a section of the village that seems to still be traversable."
+The Hill is a room. "Standing atop this hill gives one a great vantage point over the village below. It is not bustling with activity, as you feel it should have been. Instead, it lays in ruin, ransacked and pillaged, with buildings caving in where fires have overtaken them. The sky almost seems to glow red with destruction, an ominous air over such a tragic sight. A path leads down to the north into a section of the village that seems to still be traversable."
 
 The Village is a region. The pathway is a backdrop in the Village. Understand "path" and "road" as the pathway.
 The pathway has the description "A cobblestone pathway, marked with ash and burn marks. Bodies lie scattered along its length, and in some places, the structures on either side have collapsed to obstruct one side of it. Despite this, it still remains mostly traversable."
@@ -360,7 +391,7 @@ Understand "banner" and "flag" and "flags" and "arch" and "archway" as the banne
 The Marketplace is north of The Village Entrance. The Marketplace is in The Village. "Just inside the entrance to the village lies what appears to have once been an open market. Stalls lie smashed on either side of the pathway, their produce and trinkets covering the ground in patches. Dead bodies lie among them, painting a grim picture of the slaughter that has occurred. It is here that the stench of blood is the strongest amongst the ashes, and you can hear a faint sobbing to the north. The north to south path underneath continues."
 The golden apple is a thing in The Marketplace. The golden apple is edible. The golden apple has the description "An apple that appears to be made of pure gold. You assume it is still edible, although you cannot be sure."
 After eating the golden apple:
-	say "Despite being made of gold, the apple is extremely invigorating.[if the present health of the player is the max health of the player] Max health... although that didn't really change anything, huh. Well, at least it was tasty.[otherwise] Max health![end if]";
+	say "Despite being made of gold, the apple is extremely invigorating.[if the present health of the player is the max health of the player] Max health... although that didn't really change anything. At least it was tasty.[otherwise] Max health![end if]";
 	now the present health of the player is the max health of the player.
 
 Before going to The Courtyard:
@@ -370,7 +401,7 @@ The Courtyard is north of The Marketplace. The Courtyard is in The Village. "Her
 Opal is a woman. Opal is nowhere. Opal has the description "A striking woman wearing a flowing, opalescent dress that stands out alongside her sharp features and harsh expression."
 The greeting of Opal is opal-greeting. The litany of Opal is the Table of Opal Conversation.
 
-The village woman is a woman in The Courtyard. The village woman has the description "A woman wearing plain clothing sits leaned up against the Fountain of Reality, slowly rocking back in forth as she cries into her hands. She seems to be the only sign of human life in the area, as far as you can tell."
+The village woman is a woman in The Courtyard. The village woman has the description "A woman wearing plain clothing sits leaned up against the Fountain of Reality, slowly rocking back and forth as she cries into her hands. She seems to be the only sign of human life in the area, as far as you can tell."
 Understand "person" and "woman" as the village woman. The greeting of the village woman is village-greeting. The litany of the village woman is the Table of Village Woman Conversation.
 The village woman has a number called progress.
 The progress of the village woman is 0.
@@ -388,6 +419,7 @@ After quipping when the current quip is opal-yes:
 	now Opal is nowhere;
 	say "Opal vanishes, revealing a figure dressed in royal clothes that it seems she was obscuring. From the flowing red cape to the golden, jewel-encrusted crown, you can only assume that this man is the King. Or, perhaps, based on what Opal said, a previous version of him. His crazed expression and reckless grin instantly mark him as an enemy, and a sword materializes in your hand. Or, rather, not in your hand, but in the hand of the one you're controlling. The one you've been controlling. The puppet.";
 	now the puppet is in The Courtyard;
+	now the player is carrying the Sacrificial Sword;
 	now the Old King is in The Courtyard.
 
 After quipping when the current quip is opal-no:
@@ -397,7 +429,7 @@ After quipping when the current quip is opal-no:
 	now the player is failed;
 	now the player is in The Judgement Room.
 
-The Old King is a man. The Old King is nowhere. The present health of the Old King is 3. The Old King has the description "A man wearing a red cape and a golden, jewel-encrusted crown. About as stereotypically king-like as one can get. There's no way that outfit is fit for battle, but it certainly doesn't look like that's going to stop him from trying."
+The Old King is a man. The Old King is nowhere. The present health of the Old King is 3. The Old King has the description "A man wearing a red cape and a golden, jewel-encrusted crown. About as stereotypically king-like as one can get. Despite his blatantly not-battle-ready outfit, he looks ready to fight."
 Understand "man" as the Old King.
 Instead of going from The Courtyard when the Old King is in the courtyard and the Old King is not dead:
 	say "You cannot run from your past. You must face it head on."
@@ -405,26 +437,33 @@ Instead of talking to the Old King:
 	say "One look into the Old King's eyes tells you that negotiations will not be an option. He takes this moment of hesistation to swing at the puppet, dealing -30hp.";
 	decrease the present health of the player by 30.
 Instead of attacking the Old King:
-	if the present health of the Old King is 3:
-		say "Swords glance off of each other as your puppet strikes the Old King with a good amount of force, sending him staggering backwards. The puppet readies his stance for another strike.";
-	otherwise if the present health of the Old King is 2:
-		say "A second swing catches the Old King off guard, finding purchase on his right arm, which swings helplessly towards the ground.";
-	otherwise if the present health of the Old King is 1:
-		say "Finally, unable to defend himself with only his left hand, the Old King is caught by a sword straight to the neck, severing his head and killing him once and for all. He topples to the ground, and you hear Opal's voice echoing around you. 'Well done. You will now face judgement.' The world around you begins to fade away one last time, dissolving into nothingness.";
-		do a realm transition;
-		now the player is in The Judgement Room;
-	otherwise if the Old King is dead:
-		say "The Old King has already been slain.";
-	decrease the present health of the Old King by 1.
+	if the Sacrificial Sword is carried:
+		if the present health of the Old King is 3:
+			say "Swords glance off of each other as your puppet strikes the Old King with a good amount of force, sending him staggering backwards. The puppet readies his stance for another strike.";
+		otherwise if the present health of the Old King is 2:
+			say "A second swing catches the Old King off guard, finding purchase on his right arm, which swings helplessly towards the ground.";
+		otherwise if the present health of the Old King is 1:
+			say "Finally, unable to defend himself with only his left hand, the Old King is caught by a sword straight to the neck, severing his head and killing him once and for all. He topples to the ground, and you hear Opal's voice echoing around you. 'Well done. You will now face judgement.' The world around you begins to fade away one last time, dissolving into nothingness.";
+			do a realm transition;
+			now the player is in The Judgement Room;
+		otherwise if the Old King is dead:
+			say "The Old King has already been slain.";
+		decrease the present health of the Old King by 1;
+	otherwise:
+		say "You made your puppet drop the sword, so you can't attack the Old King anymore. That's your fault, and you get hit in the face by the butt of a sword. -30hp.";
+		decrease the present health of the player by 30.
 
 The puppet is a man. The puppet is nowhere. The puppet has the description "Your puppet, who you have been controlling all this time, now takes the form of a king. He wears a red cape and a golden, jewel-encrusted crown, much like the old king he is facing, except the look on the puppet's face spells somber determination."
 
+The Sacrificial Sword is nowhere. The Sacrificial Sword has the description "A silver sword with blue highlights that appears to be alight with some kind of energy. It slightly illuminates your surroundings, and you can feel its power even through the puppet holding it."
+Before dropping the Sacrificial Sword:
+	say "You choose to... drop the sword? I'll permit it, even if I cannot see the reasoning. The King does take the opportunity to strike, costing your puppet -40hp.";
+	decrease the present health of the player by 40.
+
 Before looking when the player is in the Judgement Room:
-	now Lapis is in the Judgement Room;
-	now Lazuli is in the Judgement Room;
-	now Opal is in the Judgement Room;
-	now Lazuli is undescribed;
-	now Opal is undescribed.
+	clear the player's inventory;
+	prepare the council;
+	change narrators to the player.
 The Judgement Room is a room. "You find yourself standing in the middle of a circular room made of marble, pillars shooting up to the ceiling all around you.[if unvisited] Ah, how refreshing. These thoughts are your own. You look down and see a body that is your own. Nobody is directing you around anymore, and you suddenly remember your circumstances. The trainings. The application. The test.[end if] Opal stands in front of you, flanked on either side by Lapis and Lazuli. All three sport serious expressions, looking at you expectedly.[if the player is passed] Well, except for Lapis, who is wearing that same excited expression she had when she first met you.[end if]".
 Instead of talking to Lapis when Lapis is in the Judgement Room:
 	say "'Oh, I'm not the one in charge here.' She nods her head in Opal's direction."
@@ -436,9 +475,9 @@ Instead of talking to Opal when Opal is in the Judgement Room:
 	say "'You clearly made it through the trials of the first room, as well as the rest of the challenges you faced, so I will give you credit for your problem-solving. Well done.' Opal nods in approval as she says this.[paragraph break]";
 	wait for any key;
 	if the dawg is dead:
-		say "After reading a little further, Opal continues speaking. 'Unfortunately, you did end up slaying the... 'dawg'.' She glares at Lapis, who shrugs and looks elsewhere, failing miserably to hide the grin on her face. It was a quick interaction though, and her gaze quickly returns to you. 'This automatically fails you for the compassion pillar, which means you cannot proceed to godhood. Still, I will continue to inform you of how you did in the other areas.'[paragraph break]";
+		say "After reading a little further, Opal continues speaking. 'Unfortunately, you did end up slaying the... 'dawg'.' She glares at Lapis, who shrugs and looks elsewhere, failing miserably to hide the grin on her face. It was a quick interaction though, and Opal's gaze quickly returns to you. 'This automatically fails you for the compassion pillar, which means you cannot proceed to godhood. Still, I will continue to inform you of how you did in the other areas.'[paragraph break]";
 	otherwise:
-		say "After reading a little further, Opal continues speaking. 'I see you showed appropriate compassion towards the... 'dawg'.' She glares at Lapis, who shrugs and looks elsewhere, failing miserably to hide the grin on her face. It was a quick interaction though, and her gaze quickly returns to you. 'Despite its initial aggression, you managed to subdue it peacefully. It seems you have passed the compassion pillar, so we can proceed to the next area.'[paragraph break]";
+		say "After reading a little further, Opal continues speaking. 'I see you showed appropriate compassion towards the... 'dawg'.' She glares at Lapis, who shrugs and looks elsewhere, failing miserably to hide the grin on her face. It was a quick interaction though, and Opal's gaze quickly returns to you. 'Despite its initial aggression, you managed to subdue it peacefully. It seems you have passed the compassion pillar, so we can proceed to the next area.'[paragraph break]";
 	wait for any key;
 	if Lazuli's corpse is in The Depths:
 		say "Opal pauses for a second to read on, and then opens her mouth to speak again. 'In the ocean scenario, you did not show the perseverance required to save Lazuli from drowning. He is, of course, still with us in the actual world, but that is not the point. I will unfortunately have to fail you for the perseverance pillar.[if the dawg is not dead] This means you will not be proceeding to godhood, but I will continue to inform you of how you did in the other areas.[end if]'[paragraph break]";
@@ -451,10 +490,10 @@ Instead of talking to Opal when Opal is in the Judgement Room:
 		say "Opal reaches the bottom of the paper, lifting her head to speak to you one last time. 'The last challenge was a test of forgiveness, but not for others. It was to see if you could forgive yourself and grow as a person. You chose well, and were successfully able to help your puppet overcome their past self.'[paragraph break]";
 	wait for any key;
 	if the player is failed:
-		say "With a flick of her wrist, Opal dissolves the notepad into thin air. 'Even if you did not pass this time, you are, of course, invited to try again during the next round of applications. You are dismissed.' The three figures bow their heads as you exit the room, dejected but with your sights set on the next opportunity to arise.";
+		say "With a flick of her wrist, Opal dissolves the notepad into thin air. 'Even if you did not pass this time, you are, of course, invited to try again during the next round of applications. You are dismissed.'[paragraph break]The three figures bow their heads as you exit the room, dejected but with your sights set on the next opportunity to arise.";
 		end the story finally saying "The end.";
 	otherwise:
-		say "With a flick of her wrist, Opal dissolves the notepad into thin air, and a rare smile appears on her face. 'Well done,' she says. 'You have proven yourself worthy of running a world and should be eligible for godhood. The council has determined that even if the world should burn, you would be fit to shoulder its burden. We will inform the Leaders of your success. For now, you are dismissed.' The three figures bow their heads as you exit the room, beaming and feeling far lighter than ever before.";
+		say "With a flick of her wrist, Opal dissolves the notepad into thin air, and a rare smile appears on her face. 'Well done,' she says. 'You have proven yourself worthy of running a world and should be eligible for godhood. The council has determined that even if the world should burn, you would be fit to shoulder its burden. We will inform the Leaders of your success. For now, you are dismissed.'[paragraph break]The three figures bow their heads as you exit the room, beaming and feeling far lighter than ever before.";
 		end the story finally saying "The end."
 
 Release along with a website and an interpreter.
